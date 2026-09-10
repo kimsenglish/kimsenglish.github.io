@@ -1,27 +1,21 @@
 # 교실 보드 v7
 
-김가영어학원의 시계 · 메시지 · 공지 전광판입니다.
+접속 주소: https://kimsenglish.github.io/board/
 
-- 접속 주소: https://kimsenglish.github.io/board/
-- 디자인과 기능은 승인된 `WarmWise_Classroom_Board_v7.html`과 동일합니다.
-- 계정 로그인, 원격 제어, 분석 도구 또는 별도 서버 데이터 저장은 없습니다.
-- 전광판 설정은 각 브라우저의 localStorage에 저장됩니다. 공유 링크는 보내는 시점의 복사본입니다.
-- 개인정보를 메시지에 넣어 공유하지 마세요. 같은 브라우저를 사용하는 사람은 저장된 전광판을 볼 수 있습니다.
-- 기존 학원 홈페이지 파일은 변경하지 않았습니다.
+김가영어학원의 시계 · 메시지 · 공지 전광판입니다. `index.html`은 승인된 `WarmWise_Classroom_Board_v7.html` 원본과 바이트 단위로 동일하며, 별도 로더나 압축 파일 없이 직접 열립니다. 기존 홈페이지와 다른 경로의 파일은 변경하지 않았습니다.
 
-## 배포 소스 복원
+## 사용
 
-배포 전송을 위해 원본을 gzip + Base64 청크로 보관합니다. 각 청크의 유효 길이를 적용하고 연결한 뒤 압축을 풀면 원본 HTML이 바이트 단위로 복원됩니다. `index.html`은 로딩 시 SHA-256을 검증하고 원본 HTML을 실행합니다. 원본 내보내기 기능으로 저장한 HTML은 별도의 청크 없이 실행됩니다.
+주소를 열어 문구를 편집한 뒤 오른쪽 위 ‘화면 띄우기’를 누릅니다. 로그인이나 설치는 필요하지 않습니다. 링크를 다른 선생님에게 전달하면 각자 문구를 편집해 사용할 수 있습니다.
 
-```python
-from pathlib import Path
-import base64, gzip, hashlib
-root = Path(__file__).parent
-lengths = [12988, 12988, 10651, 2333]
-encoded = ''.join((root / f'v7.part{i+1}.txt').read_text()[:n] for i, n in enumerate(lengths))
-html = gzip.decompress(base64.b64decode(encoded))
-assert hashlib.sha256(html).hexdigest() == '7f9e55151546216ada0545e2d8494e31aecb048171e5249a11e0fc566ace8ff9'
-(root / 'standalone.html').write_bytes(html)
-```
+설정은 접속한 브라우저의 localStorage에 저장됩니다. 계정별 저장이나 기기 간 실시간 동기화 기능은 없습니다. 같은 컴퓨터·브라우저를 사용하는 사람은 저장된 전광판을 함께 볼 수 있습니다. 중요한 설정은 ‘공유 · 백업’에서 JSON 또는 공유용 HTML로 보관하세요.
 
-원본 크기: 119,515 bytes. 최신 Chrome, Safari, Edge의 DecompressionStream 및 Web Crypto를 사용합니다.
+‘설정 링크’는 보내는 시점의 복사본이며 숨김·만료 메시지도 포함합니다. 학생 이름·성적 등 개인정보를 넣어 공유하지 마세요.
+
+## 원본 검증
+
+- 크기: 119,515 bytes
+- SHA-256: `7f9e55151546216ada0545e2d8494e31aecb048171e5249a11e0fc566ace8ff9`
+- 원본 일치, HTML 종결, 내장 JSON 및 JavaScript 문법 검사 통과.
+
+다음 업데이트 시 `index.html`을 수정하면 기존 공개 주소를 그대로 사용할 수 있습니다.
