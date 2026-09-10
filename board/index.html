@@ -5,33 +5,862 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <meta name="referrer" content="no-referrer">
-<meta name="robots" content="noindex,nofollow">
-<title>교실 보드 · 김가영어학원</title>
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fff;color:#252c34;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}main{max-width:32rem;padding:2rem;text-align:center}h1{font-size:1.6rem;letter-spacing:-.04em}p{line-height:1.8;color:#68727e}button{border:0;border-radius:.7rem;padding:.85rem 1.3rem;background:#2558e8;color:white;font:inherit;cursor:pointer}</style>
+<title>교실 보드 · v7</title>
+<style>
+:root{--ink:#20362f;--muted:#77827b;--paper:#f6f5f0;--line:#e3e6dd;--green:#254d41;--soft:#edf2e9;--accent:#dce8a7;--error:#984d3a;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans CJK KR","NanumSquare",sans-serif;color:var(--ink);background:var(--paper);font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.38;cursor:not-allowed}button,input,textarea,select{outline-offset:4px}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid #6b8650}button{border:0}button svg{width:18px;height:18px;flex-shrink:0}svg{fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}h1,h2,h3,p{margin:0}button{color:inherit}input,textarea,select{max-width:100%}input[type=text],input[type=date],input[type=number],textarea,select{border:1px solid var(--line);background:#fff;border-radius:10px;padding:11px 12px;color:var(--ink);width:100%;transition:border-color .15s}textarea{line-height:1.6;resize:vertical;min-height:120px}input:focus,textarea:focus,select:focus{border-color:#8b9d80}input[type=range]{accent-color:var(--green);width:100%}input[type=checkbox]{accent-color:var(--green);width:17px;height:17px;flex-shrink:0}label.field{display:block;margin-bottom:17px}.field-label{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;font-size:12px;font-weight:700}.field-label small{font-size:11px;font-weight:400;color:var(--muted)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 15px;border-radius:10px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:650;white-space:nowrap}.btn:hover{background:#f0f3e9}.btn.primary{background:var(--green);color:#fff;border-color:var(--green)}.btn.primary:hover{background:#183e31}.btn.soft{background:var(--soft);border-color:var(--soft)}.btn.danger{color:var(--error)}.btn.small{padding:8px 10px;font-size:12px}.iconbtn{display:inline-flex;justify-content:center;align-items:center;background:transparent;border:1px solid var(--line);width:33px;height:33px;border-radius:8px}.iconbtn:hover{background:var(--soft)}.row{display:flex;align-items:center;gap:8px}.spread{justify-content:space-between}.grow{flex:1;min-width:0}.hint{font-size:11px;line-height:1.7;color:var(--muted)}.helpbox{background:#f3f5ee;border-radius:10px;padding:13px 14px;font-size:12px;line-height:1.75;color:#687364}.warning{background:#fff5e9;color:#8f5b22}.hidden,[hidden]{display:none!important}.rule{height:1px;background:var(--line);margin:21px 0}.caps{font-size:10px;font-weight:750;letter-spacing:.14em}.app-header{height:82px;padding:0 30px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:15px;background:#fbfcf8}.app-brand{display:flex;align-items:center;gap:13px}.brandmark{width:43px;height:43px;background:var(--green);color:#e7edc4;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:19px;font-style:italic;letter-spacing:-2px}.app-brand h1{font-size:19px;letter-spacing:-.04em}.app-brand p{font-size:10px;letter-spacing:.12em;color:#899080;margin-top:5px}.header-actions{display:flex;gap:9px}.workspace{display:grid;grid-template-columns:354px minmax(0,1fr);gap:26px;max-width:1700px;margin:auto;padding:24px 30px 32px}.control-panel{background:#fff;border:1px solid var(--line);border-radius:16px;align-self:start;position:sticky;top:18px;max-height:calc(100vh - 122px);overflow:auto;scrollbar-width:thin}.panel-top{padding:20px 20px 15px}.panel-top .caps{color:var(--muted);margin-bottom:10px}.panel-top select{font-weight:700;border:0;background:#f2f4ed;padding:11px;font-size:14px}.panel-top .iconbtn{height:41px;width:39px;flex-shrink:0}.tabs{padding:0 18px;display:flex;border-bottom:1px solid var(--line);gap:16px}.tab{padding:13px 5px;background:none;color:#839082;position:relative;font-size:13px;font-weight:650;flex:1}.tab[aria-selected=true]{color:var(--green)}.tab[aria-selected=true]:after{content:"";height:3px;position:absolute;bottom:-1px;left:5px;right:5px;background:var(--green);border-radius:3px}.tabpane{padding:19px 20px 23px}.section-head{font-size:12px;font-weight:750;margin-bottom:11px;display:flex;align-items:center;justify-content:space-between;gap:8px}.count-pill{border-radius:20px;font-size:10px;font-weight:600;background:var(--soft);padding:3px 7px;color:#62704d}.message-list{display:grid;gap:6px;max-height:192px;overflow:auto;scrollbar-width:thin;margin-bottom:9px}.msg-item{display:flex;align-items:center;gap:10px;text-align:left;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fff;width:100%;min-width:0}.msg-item.selected{border-color:#9bb27d;background:#f3f7e8}.msg-num{font-size:10px;font-weight:700;color:#8b987e}.msg-content{flex:1;min-width:0}.msg-content strong{display:block;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;font-size:12px;font-weight:650}.msg-content small{font-size:10px;color:var(--muted);display:block;margin-top:4px}.live-dot{width:6px;height:6px;background:#789750;border-radius:50%;flex-shrink:0}.msg-item.inactive{opacity:.56}.add-message{width:100%;border:1px dashed #cdd7be;border-radius:9px;background:#fff;padding:10px;font-size:12px;color:#6b795c}.add-message:hover{background:var(--soft)}.editor-head{margin-top:21px;margin-bottom:14px}.mini-actions{display:flex;gap:4px}.mini-actions .iconbtn{width:28px;height:28px}.mini-actions svg{width:14px;height:14px}.checkrow{display:flex;align-items:center;gap:8px;font-size:12px;line-height:1.6}.checkrow label{cursor:pointer}.inline-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.segmented{display:grid;grid-template-columns:repeat(3,1fr);background:#f2f4ef;padding:4px;border-radius:11px;gap:4px}.seg{border-radius:8px;background:transparent;padding:11px 2px;font-size:11px;color:#7b8876;line-height:1.5}.seg svg{display:block;margin:0 auto 5px;width:21px;height:21px}.seg.active{background:#fff;color:var(--green);box-shadow:0 2px 7px #243c3210;font-weight:750}.themes{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.theme-btn{border:1px solid transparent;background:#fff;border-radius:10px;padding:5px 4px 6px;font-size:10px;color:#74816d}.theme-btn.active{border-color:#8fa66f;background:#f5f8ef}.swatch{display:block;height:31px;border-radius:7px;margin-bottom:7px;border:1px solid #00000008}.theme-btn[data-theme=forest] .swatch{background:#153b36}.theme-btn[data-theme=night] .swatch{background:#18243e}.theme-btn[data-theme=paper] .swatch{background:#f1eddc}.theme-btn[data-theme=coffee] .swatch{background:#342927}.theme-btn.active:after{content:" ·"}.settings-title{margin:22px 0 10px;font-size:12px;font-weight:700}.number-with-unit{display:flex;align-items:center;gap:8px;font-size:12px}.number-with-unit input{width:86px}.saved-notice{border-radius:10px;padding:12px;background:#f6f7f2;line-height:1.75;font-size:11px;color:#738068}.right-column{min-width:0}.preview-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 0 13px}.preview-heading h2{font-size:14px;font-weight:700}.preview-heading h2 small{font-size:10px;font-weight:500;color:#84907c;margin-left:9px;letter-spacing:.04em}.save-status{display:flex;align-items:center;gap:6px;font-size:10px;color:#829078}.save-status:before{content:"";width:5px;height:5px;border-radius:50%;background:#95a877}.save-status.failed{color:var(--error)}.save-status.failed:before{background:var(--error)}.preview-shell{position:relative;width:100%;aspect-ratio:16/9;background:#153b36;border-radius:16px;overflow:hidden;isolation:isolate;box-shadow:0 12px 32px #203f2412;container-type:inline-size}.stage{position:absolute;width:1440px;height:810px;left:50%;top:50%;transform-origin:center center;overflow:hidden;display:flex;flex-direction:column;padding:48px 62px 36px;background:var(--bg);color:var(--fg);--bg:#153b36;--fg:#f2f1df;--dim:#a0b7ab;--stage-accent:#e0e9af;--stage-line:#ffffff26}.stage[data-theme=night]{--bg:#18243e;--fg:#f4f3e9;--dim:#a1afc8;--stage-accent:#b9cdea;--stage-line:#ffffff24}.stage[data-theme=paper]{--bg:#f1eddc;--fg:#304139;--dim:#7c816d;--stage-accent:#536842;--stage-line:#53684230}.stage[data-theme=coffee]{--bg:#342927;--fg:#f4e9dc;--dim:#bba59a;--stage-accent:#e8c9a0;--stage-line:#ffffff24}.stage-header{display:flex;align-items:flex-start;justify-content:space-between;gap:30px;border-bottom:1px solid var(--stage-line);padding-bottom:30px}.stage-brand{max-width:750px}.stage-brand strong{font-size:26px;letter-spacing:-.02em;font-weight:650;white-space:nowrap;display:block;text-overflow:ellipsis;overflow:hidden}.stage-brand span{display:block;margin-top:9px;color:var(--dim);font-family:Georgia,serif;letter-spacing:.08em;font-size:15px;font-style:italic}.stage-date{text-align:right;font-size:18px;color:var(--dim);line-height:1.8;font-weight:500;letter-spacing:.05em;white-space:nowrap}.stage-date strong{color:var(--fg);font-size:24px;font-weight:550;letter-spacing:.06em;margin-right:10px}.stage-main{flex:1;min-height:0;display:grid;grid-template-columns:458px 1fr;align-items:center;gap:57px;padding:39px 0 34px}.clock-block{align-self:stretch;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--stage-line);padding-right:37px}.clock-kicker{color:var(--dim);font-size:17px;letter-spacing:.09em;margin-bottom:24px}.time-group{display:flex;align-items:baseline;flex-wrap:nowrap;gap:5px;white-space:nowrap}.main-time{font-size:139px;font-weight:550;line-height:1.05;font-family:-apple-system,BlinkMacSystemFont,"Arial","Noto Sans",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.065em}.clock-block.seconds-on .main-time{font-size:116px}.seconds{font-size:36px;color:var(--dim);font-weight:400;font-family:Arial,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.03em}.ampm{font-size:21px;color:var(--dim);margin-top:20px;letter-spacing:.08em}.clock-rule{height:3px;width:42px;background:var(--stage-accent);margin-top:43px}.clock-subline{font-size:17px;line-height:1.8;color:var(--dim);margin-top:18px;letter-spacing:.015em}.message-block{min-width:0;min-height:0;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:9px 0}.message-category{font-size:17px;line-height:1.5;max-width:100%;padding:8px 14px;border:1px solid var(--stage-line);border-radius:30px;letter-spacing:.02em;color:var(--stage-accent);margin-bottom:25px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.message-fit{min-height:0;max-height:410px;max-width:100%;width:100%;overflow:hidden}.stage-message{font-weight:650;font-size:74px;line-height:1.36;letter-spacing:-.045em;white-space:pre-line;word-break:keep-all;overflow-wrap:anywhere;max-width:100%;margin:0}.message-block.center{align-items:center;text-align:center}.stage-footer{display:flex;align-items:center;justify-content:space-between;gap:34px;border-top:1px solid var(--stage-line);padding-top:24px;min-height:55px}.stage-notice{display:flex;align-items:center;gap:17px;flex:1;min-width:0;font-size:23px;color:var(--fg);font-weight:400;line-height:1.45}.notice-label{font-size:13px;color:var(--stage-accent);border:1px solid var(--stage-line);padding:5px 10px;border-radius:6px;flex-shrink:0}.notice-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.stage-pages{display:flex;align-items:center;gap:8px;flex-shrink:0;font-size:13px;font-family:Arial,sans-serif;color:var(--dim);letter-spacing:.06em}.page-mark{width:18px;height:3px;background:var(--stage-line);border-radius:3px}.page-mark.active{background:var(--stage-accent);width:29px}.stage-pages b{font-weight:500;margin-left:7px}.stage[data-mode=clock] .stage-main{display:flex;justify-content:center}.stage[data-mode=clock] .clock-block{border:0;padding:0;align-items:center;justify-content:center}.stage[data-mode=clock] .main-time{font-size:300px}.stage[data-mode=clock] .seconds{font-size:75px}.stage[data-mode=clock] .clock-kicker{margin-bottom:20px}.stage[data-mode=clock] .clock-rule,.stage[data-mode=clock] .clock-subline,.stage[data-mode=clock] .message-block,.stage[data-mode=clock] .stage-pages{display:none}.stage[data-mode=clock] .ampm{margin-top:15px}.stage[data-mode=message] .clock-block{display:none}.stage[data-mode=message] .stage-main{display:block;padding:38px 0}.stage[data-mode=message] .message-fit{max-height:440px}.stage[data-mode=message] .message-block{height:100%;padding:0;align-items:center;text-align:center}.stage[data-mode=message] .stage-message{font-size:94px}.preview-controls{padding:15px 3px 17px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line)}.preview-controls .hint{font-size:11px}.preview-controls .iconbtn{background:#fbfcf8;border-color:#dce2d5;width:30px;height:30px}.preview-controls .iconbtn svg{width:14px;height:14px}.rotation-state{font-size:11px;color:#617150;min-width:95px;text-align:right}.preview-note{margin-top:19px;display:flex;align-items:flex-start;gap:13px}.note-symbol{border:1px solid #dbe3ca;border-radius:9px;width:35px;height:35px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#697d52}.note-symbol svg{width:17px;height:17px}.preview-note strong{font-size:12px;display:block;margin:1px 0 4px}.preview-note p{font-size:11px;color:#88917f;line-height:1.7}.template-section{margin-top:28px}.template-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.template-heading h3{font-size:14px}.template-heading p{font-size:10px;color:#86917d;margin-top:4px}.template-filters{display:flex;gap:5px;flex-wrap:wrap}.filter-btn{font-size:10px;background:transparent;color:#829177;padding:7px 9px;border-radius:20px}.filter-btn.active{background:#e7eddc;color:#4c663c;font-weight:700}.template-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.template-card{border:1px solid #e0e5d7;background:#fafbf6;border-radius:12px;padding:16px;text-align:left;position:relative;min-height:114px}.template-card:hover{background:#eff4e4;border-color:#bfcfaa}.template-card .caps{color:#81916c;font-size:9px;letter-spacing:.07em}.template-card p{font-size:12px;font-weight:550;line-height:1.75;color:#4c5e42;margin-top:9px;padding-right:9px;word-break:keep-all}.template-card .plus{position:absolute;right:11px;top:12px;color:#839674;font-size:15px}.app-foot{font-size:10px;letter-spacing:.04em;color:#9aa28e;display:flex;justify-content:space-between;margin-top:23px;gap:15px}.display-toolbar{display:none;position:absolute;z-index:5;bottom:24px;left:50%;transform:translateX(-50%);background:#12231ff2;color:#f6f5e9;border:1px solid #ffffff2b;border-radius:14px;padding:10px 12px;align-items:center;gap:8px;box-shadow:0 10px 30px #0004;transition:opacity .2s}.display-toolbar .btn{background:#ffffff12;border-color:#ffffff20;color:#f6f5e9}.display-toolbar .shortcut{font-size:10px;color:#bed1bb;margin:0 7px;white-space:nowrap}.presenting{overflow:hidden;background:#153b36}.presenting .preview-shell{position:fixed;inset:0;width:100%;height:100%;height:100dvh;aspect-ratio:auto;border:0;border-radius:0;z-index:1000;box-shadow:none}.presenting .display-toolbar{display:flex;opacity:0;pointer-events:none}.presenting.chrome-visible .display-toolbar{opacity:1;pointer-events:auto}.presenting:not(.chrome-visible) .preview-shell{cursor:none}.toast{position:fixed;z-index:5000;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#21392d;color:#fff;padding:12px 19px;border-radius:11px;font-size:12px;line-height:1.6;box-shadow:0 7px 24px #0002;opacity:0;pointer-events:none;transition:.2s;max-width:calc(100vw - 36px);text-align:center}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}dialog{border:1px solid var(--line);border-radius:18px;padding:25px;max-width:600px;width:calc(100% - 32px);color:var(--ink);box-shadow:0 30px 100px #0003;background:#fff}dialog::backdrop{background:#15261e80;backdrop-filter:blur(4px)}.dialog-title{font-size:18px;margin:3px 0 7px;letter-spacing:-.02em}.dialog-desc{font-size:12px;color:var(--muted);line-height:1.8;margin:0 0 20px}.dialog-close{float:right}.dialog-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:22px}.dialog-section{padding:17px 0;border-bottom:1px solid var(--line)}.dialog-section:last-child{border:0}.dialog-section h3{font-size:13px;margin-bottom:7px}.dialog-section p{font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:11px}.share-url{font-size:11px;min-height:74px;resize:none;overflow-wrap:anywhere}.share-block-note{margin-top:10px}.wide{width:100%}.error-text{color:var(--error);font-size:11px;line-height:1.7;margin-top:8px}.file-upload{display:none}.empty-list{padding:12px;font-size:12px;color:var(--muted)}.blank-editor{padding:20px 0;font-size:12px;color:var(--muted)}noscript{display:block;padding:30px;font-size:18px;background:#fff3dc}
+@media(min-width:1600px){.workspace{grid-template-columns:380px minmax(0,1fr);gap:30px}.app-header{padding-left:max(30px,calc((100vw - 1640px)/2));padding-right:max(30px,calc((100vw - 1640px)/2))}}
+@media(max-width:1100px){.workspace{grid-template-columns:310px minmax(0,1fr);padding:20px;gap:20px}.app-header{padding:0 20px}.template-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.template-heading{align-items:flex-start;flex-direction:column}.tabpane{padding:17px}.panel-top{padding:17px}.preview-controls .hint{max-width:190px}.control-panel{max-height:calc(100vh - 122px)}}
+@media(max-width:800px){.app-header{height:73px;padding:0 14px}.brandmark{width:35px;height:35px;font-size:17px;border-radius:10px}.app-brand{gap:9px}.app-brand h1{font-size:16px}.app-brand p{font-size:8px}.header-actions{gap:6px}.header-actions .btn{font-size:11px;padding:10px}.header-actions .btn svg{display:none}.workspace{display:flex;flex-direction:column;padding:17px 14px 25px;gap:22px}.right-column{display:contents}.preview-area{order:0}.control-panel{order:1;position:static;width:100%;max-height:none}.template-section{order:2;margin-top:0}.app-foot{order:3;margin-top:0}.preview-heading{margin-top:0}.preview-heading h2 small{display:none}.preview-note{margin-top:13px}.preview-controls{padding-bottom:12px}.preview-controls .hint{font-size:10px;max-width:170px}.rotation-state{font-size:10px;min-width:76px}.template-heading{flex-direction:row;align-items:center}.template-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.template-card{min-height:104px}.preview-shell{border-radius:12px}.message-list{max-height:180px}.presenting .display-toolbar{bottom:16px;gap:4px;padding:8px}.display-toolbar .shortcut{display:none}.display-toolbar .btn{font-size:11px;padding:10px}.save-status{font-size:9px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.app-header,.control-panel,.preview-heading,.preview-controls,.preview-note,.template-section,.app-foot,.display-toolbar,dialog{display:none!important}.workspace{display:block;padding:0}.preview-shell{border-radius:0;box-shadow:none}}
+
+
+/* v3 — warm paper, clear type, and a single restrained accent. */
+:root{--ink:#2e302c;--muted:#777970;--paper:#f5f5f1;--line:#e4e5de;--green:#3e5147;--soft:#eff1eb;--accent:#a55b46;--error:#a34332}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline-color:#7c8d7d}
+.btn{border-radius:9px;font-weight:600}.btn:hover{background:#f2f3ee}.btn.primary:hover{background:#2e4036}
+input[type=text],input[type=date],input[type=number],textarea,select{background:#fff;border-radius:8px}
+input:focus,textarea:focus,select:focus{border-color:#879689}
+.app-header{height:84px;background:#fdfdfb;border-bottom:1px solid var(--line)}
+.app-brand{gap:13px}.brandmark{width:40px;height:40px;border:1px solid #d7ded2;border-radius:10px;transform:none;background:#edf0e8;color:#4e6353;font-family:Georgia,serif;font-style:italic;font-size:23px;letter-spacing:-2px;padding-right:2px}
+.app-brand h1{font-size:20px;font-weight:700;letter-spacing:-.045em}.app-brand p{color:#82867d;letter-spacing:0;font-size:11px;margin-top:5px}
+.workspace{gap:28px;padding-top:24px}.control-panel{border-radius:14px;box-shadow:none}
+.panel-top .caps{letter-spacing:.02em;font-size:11px}.panel-top select{background:#f3f4ef;border-radius:8px}
+.tabs{gap:10px}.tab{color:#73786d;font-weight:550}.tab[aria-selected=true]{font-weight:700}.tab[aria-selected=true]:after{height:2px;left:9px;right:9px;background:var(--green)}
+.msg-item{background:#fff;border-color:#e9eae4;border-radius:9px;padding:12px}
+.msg-item.selected{background:#f1f4ec;border-color:#c5d0bd}.msg-content small,.msg-num{color:#7c8376}.msg-num{font-variant-numeric:tabular-nums}.live-dot{background:#657e58}
+.add-message{border-color:#d8ded0;color:#67745f;border-radius:8px}.add-message:hover{background:#f3f6ef}
+.helpbox,.saved-notice{background:#f3f4ef;color:#6e7568;border-radius:9px}.warning{background:#fbf1e5;color:#8b602c}
+.segmented{background:#f0f2ed;border-radius:9px}.seg{border-radius:7px}.seg.active{box-shadow:0 1px 4px #263b3010}
+.themes{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.theme-btn{border-radius:9px;color:#75796e;background:transparent;font-size:10px;padding:5px 5px 8px}.theme-btn.active{background:#f3f5ee;border-color:#bdc9b5}.theme-btn.active:after{content:none}
+.swatch{height:35px;border-radius:6px;border:1px solid #d9ddd3}
+.theme-btn[data-theme=paper] .swatch{background:linear-gradient(110deg,#faf9f6 74%,#a55b46 74%)}
+.theme-btn[data-theme=forest] .swatch{background:linear-gradient(110deg,#f5f7f2 74%,#48674e 74%)}
+.theme-btn[data-theme=night] .swatch{background:linear-gradient(110deg,#232c28 74%,#d7bca3 74%)}
+.preview-heading h2{font-size:14px;font-weight:650}.preview-heading h2 small{color:#85897f;font-size:10px;letter-spacing:0}
+.save-status{color:#7b8673}.preview-shell{border-radius:12px;background:#faf9f6;box-shadow:0 0 0 1px #dedfd6,0 8px 28px #28382b06}
+/* Everything inside the stage uses a fixed 1440 x 810 design space. */
+.stage,.stage[data-theme=paper]{--bg:#faf9f6;--fg:#2e302c;--dim:#797b73;--stage-accent:#a55b46;--stage-line:#dedfd7;--tile:transparent;--tile-ink:var(--fg);--tile-dim:var(--dim);--notice-bg:transparent;--highlight:transparent;--pop:var(--stage-accent);background:var(--bg);padding:50px 68px 38px}
+.stage[data-theme=forest]{--bg:#f5f7f2;--fg:#293e30;--dim:#73806f;--stage-accent:#48674e;--stage-line:#dce2d6}
+.stage[data-theme=night]{--bg:#232c28;--fg:#f6f3eb;--dim:#b1baad;--stage-accent:#d7bca3;--stage-line:#ffffff23}
+.stage-header{border:0;padding:0;min-height:58px;align-items:center}
+.stage-brand strong{font-size:23px;font-weight:600;letter-spacing:-.03em;line-height:1.4}
+.stage-brand span{font-family:Georgia,serif;font-style:italic;letter-spacing:.015em;font-size:17px;margin-top:6px;color:var(--dim)}
+.stage-date{display:flex;flex-direction:row-reverse;align-items:center;gap:13px;font-size:18px;line-height:1.7;letter-spacing:0;color:var(--dim);background:transparent;border:0;border-radius:0;padding:0}
+.stage-date strong{font-size:18px;font-weight:500;letter-spacing:0;color:var(--fg);margin:0}
+.stage-main{grid-template-columns:390px minmax(0,1fr);gap:92px;align-items:center;padding:39px 0 41px}
+.clock-block{position:relative;align-self:stretch;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:transparent;border:0;border-radius:0;padding:26px 0;margin:0;color:var(--fg)}
+.clock-spark{display:none}.clock-kicker{font-size:17px;font-weight:400;color:var(--dim);letter-spacing:.02em;margin-bottom:21px}
+.time-group{width:100%;display:flex;align-items:baseline;justify-content:center;gap:7px}
+.main-time{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:133px;font-weight:500;line-height:1.08;letter-spacing:-.07em;font-variant-numeric:tabular-nums;color:var(--fg)}
+.clock-block.seconds-on .main-time{font-size:116px}.seconds{font-size:27px;font-weight:400;color:var(--dim);letter-spacing:-.02em}
+.ampm{font-size:16px;font-weight:400;color:var(--dim);letter-spacing:.04em;margin-top:12px}
+.clock-rule{width:22px;height:2px;border-radius:0;background:var(--stage-accent);opacity:.75;margin-top:31px}
+.clock-subline{font-size:18px;font-weight:400;line-height:1.7;color:var(--dim);margin-top:18px;letter-spacing:-.01em;white-space:pre-line;max-width:100%;overflow-wrap:anywhere}
+.message-block{padding:4px 0;position:relative;justify-content:center}
+.message-category{border:0;background:transparent;border-radius:0;font-size:19px;font-weight:500;line-height:1.6;letter-spacing:-.01em;padding:0;margin-bottom:25px;color:var(--stage-accent)}
+.message-category:before{content:none}
+.message-fit{max-height:410px}
+.stage-message{font-size:76px;font-weight:600;line-height:1.52;letter-spacing:-.045em;position:relative;color:var(--fg)}
+.message-emphasis{color:inherit;background:none;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.stage-footer{border-top:1px solid var(--stage-line);background:transparent;border-radius:0;padding:22px 0 0;min-height:57px;gap:25px}
+.stage-notice{font-size:22px;gap:20px;color:var(--fg);font-weight:400}
+.notice-label{border:0;border-radius:0;background:transparent;font-size:14px;font-weight:500;color:var(--stage-accent);padding:0;letter-spacing:-.01em}
+.stage-pages{gap:7px;color:var(--dim)}.page-mark{width:5px;height:5px;border-radius:50%;background:var(--dim);opacity:.3}.page-mark.active{width:5px;background:var(--stage-accent);opacity:1}.stage-pages b{font-size:12px;font-weight:400;margin-left:10px;letter-spacing:.035em}
+.stage[data-mode=clock] .stage-main{display:flex;padding:24px 0}
+.stage[data-mode=clock] .clock-block{background:transparent;color:var(--fg);align-self:center;align-items:center;border:0;border-radius:0;margin:0;padding:0;width:100%}
+.stage[data-mode=clock] .main-time{font-size:300px;color:var(--fg);font-weight:400;letter-spacing:-.055em}
+.stage[data-mode=clock] .seconds{font-size:66px;color:var(--dim)}
+.stage[data-mode=clock] .clock-kicker{font-size:20px;color:var(--dim);margin-bottom:18px}
+.stage[data-mode=clock] .ampm{color:var(--dim);margin-top:18px}
+.stage[data-mode=message] .stage-main{padding:30px 10px;display:block}
+.stage[data-mode=message] .message-block{height:100%;align-items:center;text-align:center;padding:0}
+.stage[data-mode=message] .message-category{margin-bottom:26px}
+.stage[data-mode=message] .message-fit{max-height:448px}
+.stage[data-mode=message] .stage-message{font-size:100px;line-height:1.48}
+.preview-controls{border-color:var(--line)}.preview-controls .iconbtn{background:#fdfdfb;border-color:#dfe3d8}.rotation-state{color:#7b8474}
+.mood-strip{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:15px 1px 0;color:#83887c;font-size:11px}
+.mood-buttons{display:flex;align-items:center;gap:5px}.mood-dot{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#78816f;border:1px solid transparent;border-radius:7px;padding:6px 8px;font-size:10px;font-weight:500}.mood-dot:before{content:"";display:block;width:10px;height:10px;border-radius:50%;background:var(--mood);box-shadow:0 0 0 1px #00000016}.mood-dot.active{border-color:#d4ddcc;color:#3f573f;background:#f0f3eb}
+.preview-note{margin-top:17px;gap:10px}.note-symbol{border:0;border-radius:8px;background:#ebeee5;color:#7e8b72;width:31px;height:31px}.preview-note strong{font-weight:550;color:#717c65}.preview-note p{color:#818975;font-size:11px}
+.template-section{margin-top:27px}.template-heading h3{font-size:15px;font-weight:650;letter-spacing:-.02em}.template-heading p{font-size:11px;color:#848d79}
+.filter-btn{color:#7e8874}.filter-btn.active{background:#e8eddf;color:#536644}
+.template-card,.template-card:nth-child(n){background:#fdfdf9;border:1px solid #e0e5d7;border-radius:10px;padding:17px;min-height:112px;box-shadow:none;transition:background .15s,border-color .15s}
+.template-card:hover{background:#f2f6ea;border-color:#c3d0b4;transform:none}.template-card .caps{color:#899578;font-size:10px;font-weight:500;letter-spacing:0}.template-card p{color:#546448;font-size:12px;font-weight:500;line-height:1.8;margin-top:10px;padding-right:9px}.template-card .plus{color:#92a081;right:13px;top:13px}
+.app-foot{color:#979f8d;letter-spacing:.025em}.toast{background:#344a39;border-radius:9px}
+.display-toolbar{background:#28382ef5;border-color:#ffffff15;border-radius:10px}.display-toolbar .shortcut{color:#bcc8b4}
+.presenting{background:#faf9f6}
+dialog{border-radius:14px}.dialog-desc{line-height:1.8}
+@media(min-width:1600px){.workspace{gap:30px}}
+@media(max-width:1100px){.workspace{gap:20px}.app-brand h1{font-size:19px}}
+@media(max-width:800px){.app-header{height:76px}.brandmark{width:34px;height:34px;font-size:20px;border-radius:9px}.app-brand{gap:9px}.app-brand h1{font-size:16px}.app-brand p{font-size:9px}.header-actions .btn{padding:9px;font-size:11px}.control-panel{border-radius:12px}.preview-shell{border-radius:9px}.mood-strip{margin-top:12px;gap:7px}.mood-dot{font-size:9px;padding:6px;gap:5px}.mood-buttons{gap:3px}.template-heading h3{font-size:14px}.template-card{padding:14px;min-height:104px}.template-card p{font-size:12px}}
+@media(max-width:380px){.app-brand p{display:none}.app-brand h1{font-size:14px}.brandmark{width:29px;height:29px;font-size:18px}.header-actions .btn{font-size:10px;padding:8px 7px}.mood-strip>span{font-size:10px}}
+@media print{.mood-strip{display:none!important}}
+
+/* v4 · Shared alignment grid. Keep the v3 palette and all saved content. */
+.stage,.stage[data-theme] {
+  padding:48px 72px 40px;
+  display:grid;
+  grid-template-rows:64px minmax(0,1fr) 64px;
+  row-gap:0;
+}
+.stage-header {
+  min-height:0;
+  align-items:flex-start;
+  padding:0;
+}
+.stage-brand {min-width:0; max-width:960px;}
+.stage-brand strong {font-size:24px; line-height:34px; font-weight:600;}
+.stage-brand span {
+  font-family:inherit;
+  font-style:normal;
+  font-size:14px;
+  line-height:22px;
+  font-weight:400;
+  letter-spacing:.02em;
+  margin-top:4px;
+}
+.stage-date {height:34px; line-height:34px; align-items:baseline; gap:12px;}
+.stage-date strong {font-size:18px; line-height:34px;}
+.stage-main {
+  min-height:0;
+  display:grid;
+  grid-template-columns:360px minmax(0,1fr);
+  align-items:stretch;
+  column-gap:96px;
+  padding:120px 0 40px;
+}
+.clock-block {
+  height:100%;
+  min-width:0;
+  align-self:stretch;
+  align-items:flex-start;
+  justify-content:flex-start;
+  text-align:left;
+  padding:0;
+  margin:0;
+  border:0;
+}
+.clock-kicker {
+  height:28px;
+  flex:0 0 28px;
+  line-height:28px;
+  font-size:18px;
+  font-weight:400;
+  letter-spacing:0;
+  padding:0;
+  margin:0 0 24px;
+}
+.time-group {
+  width:100%;
+  min-height:0;
+  justify-content:flex-start;
+  align-items:baseline;
+  gap:12px;
+}
+.main-time,.clock-block.seconds-on .main-time {
+  font-size:128px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-.05em;
+  font-variant-numeric:tabular-nums lining-nums;
+}
+.seconds {font-size:27px;line-height:1; font-variant-numeric:tabular-nums;}
+.ampm {font-size:16px;line-height:24px;letter-spacing:0;margin-top:12px;}
+.clock-rule {display:none;}
+.clock-subline {font-size:18px;line-height:30px;margin-top:24px;letter-spacing:-.01em;}
+.message-block,.message-block.center {
+  --message-label-height:28px;
+  --message-gap:24px;
+  height:100%;
+  min-height:0;
+  display:grid;
+  grid-template-rows:var(--message-label-height) minmax(0,1fr);
+  row-gap:var(--message-gap);
+  align-items:start;
+  align-content:stretch;
+  justify-content:stretch;
+  padding:0;
+}
+.message-category {
+  grid-row:1;
+  justify-self:start;
+  height:28px;
+  line-height:28px;
+  font-size:18px;
+  font-weight:500;
+  letter-spacing:0;
+  padding:0;
+  margin:0;
+}
+.message-block.center .message-category {justify-self:center;}
+.message-fit {
+  grid-row:2;
+  align-self:start;
+  width:100%;
+  min-height:0;
+  max-height:none;
+  overflow:hidden;
+}
+.stage-message {
+  font-size:76px;
+  font-weight:600;
+  line-height:1.42;
+  letter-spacing:-.04em;
+  font-style:normal;
+  margin:0;
+}
+.stage-footer {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  column-gap:24px;
+  min-height:0;
+  align-items:start;
+  padding:24px 0 0;
+}
+.stage-notice {min-width:0; min-height:32px; font-size:22px; line-height:32px;gap:24px;}
+.notice-label {font-size:14px;line-height:32px;padding:0;}
+.stage-pages {height:32px;line-height:32px;align-items:center;}
+/* Dedicated modes share the same outer margins, not the two-column tracks. */
+.stage[data-mode=clock] .stage-main {display:flex;justify-content:center;align-items:center;padding:32px 0;}
+.stage[data-mode=clock] .clock-block {height:auto;width:100%;align-self:center;align-items:center;text-align:center;justify-content:center;}
+.stage[data-mode=clock] .clock-kicker {height:28px;line-height:28px;margin-bottom:24px;}
+.stage[data-mode=clock] .time-group {justify-content:center;gap:18px;}
+.stage[data-mode=clock] .main-time {font-size:300px;font-weight:400;line-height:1.1;letter-spacing:-.05em;}
+.stage[data-mode=clock] .ampm {line-height:24px;margin-top:16px;}
+.stage[data-mode=message] .stage-main {display:block;padding:96px 0 40px;}
+.stage[data-mode=message] .message-block {height:100%;padding:0;align-items:start;text-align:center;}
+.stage[data-mode=message] .message-category {justify-self:center;margin:0;}
+.stage[data-mode=message] .message-fit {max-height:none;}
+.stage[data-mode=message] .stage-message {font-size:100px;line-height:1.42;}
+/* Editor controls stay square to their common edges, with upright type. */
+.brandmark {font-style:normal;transform:none;}
+.preview-heading {min-height:28px;margin-top:0;margin-bottom:12px;align-items:center;}
+.preview-heading h2 {line-height:28px;}
+.theme-btn .swatch {background-size:100% 100%;}
+.theme-btn[data-theme=paper] .swatch {background:linear-gradient(90deg,#faf9f6 74%,#a55b46 74%);}
+.theme-btn[data-theme=forest] .swatch {background:linear-gradient(90deg,#f5f7f2 74%,#48674e 74%);}
+.theme-btn[data-theme=night] .swatch {background:linear-gradient(90deg,#232c28 74%,#d7bca3 74%);}
+
+
+/* v5 · Restrained typography and neutral surfaces. v4's alignment grid is retained. */
+:root{--ink:#29302c;--muted:#727c75;--paper:#f5f6f3;--line:#dde2db;--green:#465d50;--soft:#eef1eb;--accent:#e3e9df}
+body{background:var(--paper)}
+.app-header{background:#fcfcfa}.app-brand h1{font-size:21px;font-weight:650;letter-spacing:-.035em}
+.app-brand p{font-size:11px;letter-spacing:0;color:var(--muted)}
+.brandmark{width:38px;height:38px;background:transparent;border:1px solid #ccd4ca;color:#536658;border-radius:7px}
+.brandmark svg{width:24px;height:24px;stroke-width:1.3}
+.control-panel{border-radius:10px}.tabs{gap:12px}.tab{font-size:12px}
+.tabs .tab[aria-selected=true]:after{height:2px}
+.btn,.msg-item,.add-message,input[type=text],input[type=date],input[type=number],textarea,select{border-radius:7px}
+.btn.primary{background:#465d50;border-color:#465d50}.btn.primary:hover{background:#34483b}
+.btn:hover{background:#f0f2ed}.btn.soft{background:#edf1e9;border-color:#e0e6da}
+.panel-top select,.segmented{background:#f2f4ef}
+.msg-item.selected{background:#f0f3ed;border-color:#aebaa6}
+.live-dot{background:#72856b}.msg-num{color:#819077}
+.seg.active{color:#405a46;box-shadow:none;border:1px solid #d9e1d2}
+.theme-btn.active{border-color:#aebaa7;background:#f5f7f1}
+.theme-btn[data-theme=paper] .swatch{background:#fafaf8;border:1px solid #d8dcd4}
+.theme-btn[data-theme=forest] .swatch{background:#e7eee2;border:1px solid #d6dfcf}
+.theme-btn[data-theme=night] .swatch{background:#232725;border:1px solid #343d36}
+.stage,.stage[data-theme=paper]{--bg:#fafaf8;--fg:#2b2f2c;--dim:#767d77;--stage-accent:#556c5e;--stage-line:#dfe3db}
+.stage[data-theme=forest]{--bg:#f3f6f2;--fg:#2d3b30;--dim:#727e70;--stage-accent:#4f6850;--stage-line:#dbe3d7}
+.stage[data-theme=night]{--bg:#232725;--fg:#f2f4ee;--dim:#aeb7aa;--stage-accent:#bfceb5;--stage-line:#414b41}
+.stage-brand strong{font-size:23px;font-weight:600}.stage-brand span{font-size:13px;color:var(--dim)}
+.stage-date,.stage-date strong{font-size:17px}
+.clock-kicker{font-size:16px;font-weight:400;color:var(--dim)}
+.message-category{font-size:16px;font-weight:500;color:var(--stage-accent)}
+.stage-message{font-weight:550;letter-spacing:-.035em;line-height:1.42}
+.notice-label{color:var(--dim);font-weight:400}.stage-notice{font-weight:400}
+.clock-subline{font-size:17px;color:var(--dim)}
+.preview-shell{background:#fafaf8;border-radius:8px;box-shadow:0 0 0 1px #dde2d8}
+.mood-dot.active{background:#eef2e9;border-color:#ccd7c3;color:#435d3d}
+.preview-controls .iconbtn{background:#fcfdfa}
+.preview-note{border-top:1px solid #e1e6da;padding-top:16px}.note-symbol{display:none}
+.preview-note strong{font-size:11px;font-weight:600;color:#6d7c64}.preview-note p{color:#7b866f}
+.template-card,.template-card:nth-child(n){background:#fcfdf9;border-color:#e0e6d7;border-radius:8px}
+.template-card p{color:#465b3e;font-size:13px;font-weight:450;line-height:1.7}
+.template-card:hover{background:#f3f6eb;border-color:#bfcfad}
+.template-card .caps{font-size:10px;color:#859475}
+.filter-btn.active{background:#eaf0df;color:#556c43}
+.preview-heading h2{font-size:14px}.preview-heading h2 small{color:#8a9480}
+.app-foot{letter-spacing:0;color:#959e8a;font-size:10px}
+.toast{background:#364b35}.presenting{background:#fafaf8}
+@media(max-width:800px){.app-brand h1{font-size:18px}.app-brand p{font-size:10px}.brandmark{width:32px;height:32px}.brandmark svg{width:22px;height:22px}}
+
+
+/* v6 — a graphic clock, editorial typography, and one decisive color.
+   Coordinates share a fixed 1440 × 810 stage. Saved content is not rewritten. */
+:root{--ink:#242722;--muted:#747870;--paper:#f3f3ed;--line:#dddfd7;--green:#3154dc;--soft:#eef1fc;--accent:#dbea89;--error:#a13d2c}
+body{background:var(--paper)}
+.app-header{height:82px;background:#fafbf7;border-color:var(--line)}
+.app-brand h1{font-size:21px;font-weight:750;letter-spacing:-.04em}
+.app-brand p{color:#7b8075;font-size:10px;letter-spacing:.04em}
+.brandmark{background:#3154dc;border:0;color:white;border-radius:8px;width:39px;height:39px}
+.brandmark svg{stroke-width:1.5}
+.workspace{grid-template-columns:336px minmax(0,1fr);gap:30px;padding:24px 28px 36px}
+.control-panel{border:1px solid #dfe2d9;border-radius:12px;box-shadow:none}
+.panel-top .caps{letter-spacing:0;font-size:11px;color:#767e6d}
+.panel-top select,.segmented{background:#f3f4ee}
+.tabs{gap:10px}.tab{color:#747b6d}.tab[aria-selected=true]{color:#3154dc}.tabs .tab[aria-selected=true]:after{height:3px;background:#3154dc}
+.btn{border-color:#dce0d4;border-radius:8px}.btn:hover{background:#f0f2e9}
+.btn.primary{background:#3154dc;border-color:#3154dc;color:#fff}.btn.primary:hover{background:#2645c4}
+.btn.soft{background:#eef1fc;border-color:#e2e7fa;color:#3650a7}
+.btn:focus-visible,.tab:focus-visible,.iconbtn:focus-visible,.mood-dot:focus-visible{outline-color:#3154dc}
+.msg-item{border-color:#e1e4da;border-radius:8px;padding:10px}.msg-item.selected{border-color:#3154dc;background:#f0f3fe}
+.msg-item .msg-num{font-weight:750;color:#7a826e;min-width:22px;text-align:center}
+.msg-item.selected .msg-num{color:#3154dc}
+.msg-content strong{font-weight:600}.live-dot{background:#3154dc}.count-pill{background:#edf0fb;color:#5b6fbe}
+.add-message{border-color:#c4cddb;color:#53618f}.add-message:hover{background:#f0f3fc}
+input[type=text],input[type=date],input[type=number],textarea,select{border-color:#dde1d5;border-radius:7px}
+input:focus,textarea:focus,select:focus{border-color:#6b84df}
+input[type=checkbox],input[type=range]{accent-color:#3154dc}
+.helpbox,.saved-notice{background:#f3f4ef;color:#777e6e}.warning{background:#fff2de;color:#8f5b22}
+.seg{border:1px solid transparent;color:#808774}.seg.active{border-color:#dce3f9;background:#fff;color:#3154dc;box-shadow:none}
+.themes{grid-template-columns:repeat(3,1fr);gap:8px}.theme-btn{color:#747a6a}.theme-btn.active{background:#f0f3fc;border-color:#a9baf2;color:#3154dc}
+.theme-btn[data-theme=paper] .swatch{background:#3154dc;border:0}
+.theme-btn[data-theme=forest] .swatch{background:#ba4b32;border:0}
+.theme-btn[data-theme=night] .swatch{background:#292c30;border:0;box-shadow:inset -14px 0 #dcea8d}
+.graphic-options{display:grid;gap:13px;margin-top:20px}.graphic-options .checkrow{font-size:12px;color:#656f59}
+.preview-heading{margin:0 0 12px}.preview-heading h2{font-size:14px}.preview-heading h2 small{color:#8d957f}
+.preview-shell{border-radius:12px;background:#f7f6f0;box-shadow:0 0 0 1px #dfe2d6,0 8px 26px #25312309}
+.preview-controls{padding-top:12px}.preview-controls .iconbtn{background:#fbfcf8;border-color:#dfe4d5}
+.mood-strip{margin-top:14px}.mood-dot{padding:7px 11px;font-size:11px;color:#747d66;border-radius:6px}.mood-dot:before{width:12px;height:12px;border-radius:3px;box-shadow:none}
+.mood-dot.active{background:#e8edff;border-color:#c9d5fb;color:#3154dc}
+.preview-note{border:0;background:transparent;padding:0;margin-top:18px}.preview-note strong{font-size:11px;color:#70795f;font-weight:650}.preview-note p{color:#838b75;font-size:11px}
+.template-section{margin-top:25px}.template-heading h3{font-size:15px;font-weight:700;color:#333c2b}.template-heading p{font-size:11px;color:#888f7b}
+.filter-btn{font-size:11px;color:#828b74}.filter-btn.active{background:#e9eefa;color:#3755b5}
+.template-card,.template-card:nth-child(n){background:#fdfefa;border:1px solid #e0e5d4;border-radius:9px;min-height:106px;padding:16px;box-shadow:none}
+.template-card:hover{background:#f5f7ff;border-color:#b5c5f2;transform:none}
+.template-card p{font-size:13px;color:#39452b;font-weight:500;line-height:1.7;padding-right:6px}
+.template-card .caps{display:flex;align-items:center;gap:6px;font-size:10px;color:#899178;letter-spacing:0}
+.template-card .caps:before{content:'';width:5px;height:5px;background:#3154dc;border-radius:1px}
+.template-card .plus{color:#9fa88e;font-weight:400;top:12px;right:13px}
+.app-foot{font-size:10px;color:#9aa08e}.toast{background:#293452}
+/* Stage palette: a warm neutral sheet, a single colored clock, a small citrus accent. */
+.stage,.stage[data-theme=paper]{--bg:#f7f6f0;--fg:#252822;--dim:#7d8276;--stage-accent:#3154dc;--stage-line:#dfe1d5;--clock-bg:#3154dc;--clock-fg:#fffef6;--clock-dim:#dce3ff;--tag-bg:#e5edaf;--tag-fg:#3b4324;--footer-bg:#eeefe6;--dial-bg:#ffffff0d}
+.stage[data-theme=forest]{--bg:#f7f6f0;--fg:#302a25;--dim:#898076;--stage-accent:#ba4b32;--stage-line:#e3ded3;--clock-bg:#ba4b32;--clock-fg:#fffaf1;--clock-dim:#f1d3c7;--tag-bg:#ede7bc;--tag-fg:#564923;--footer-bg:#eeece3;--dial-bg:#ffffff0b}
+.stage[data-theme=night]{--bg:#202327;--fg:#f1f2e8;--dim:#a2a999;--stage-accent:#dcea8d;--stage-line:#41463d;--clock-bg:#dcea8d;--clock-fg:#252b1d;--clock-dim:#626d39;--tag-bg:#363e2e;--tag-fg:#dcea8d;--footer-bg:#2b302c;--dial-bg:#24301608}
+.stage,.stage[data-theme]{padding:36px 48px 32px;display:grid;grid-template-rows:66px minmax(0,1fr) 66px;row-gap:0;font-style:normal}
+.stage-header{padding:0 0 20px;border-bottom:1px solid var(--stage-line);display:flex;align-items:flex-start;justify-content:space-between;gap:30px}
+.stage-brand{position:relative;display:grid;grid-template-columns:34px minmax(0,1fr);column-gap:12px;max-width:960px;min-width:0;align-items:center}
+.stage-brand .board-sign{display:block;grid-column:1;grid-row:1;width:26px;height:26px;margin:0;position:relative;background:var(--stage-accent);border-radius:4px}
+.stage-brand .board-sign:after{content:'';position:absolute;width:10px;height:10px;bottom:0;right:0;background:var(--bg);border-left:2px solid var(--bg);border-top:2px solid var(--bg)}
+.stage-brand strong{grid-column:2;grid-row:1;font-size:23px;line-height:32px;font-weight:700;letter-spacing:-.03em}
+.stage-brand #stageTagline{grid-column:2;grid-row:2;display:block;font-family:inherit;font-size:11px;line-height:16px;margin:1px 0 0;color:var(--dim);font-style:normal;letter-spacing:.01em}
+.stage-date{height:32px;line-height:32px;gap:16px;align-items:center;color:var(--dim);font-size:17px;padding:0;margin:0}
+.stage-date strong{font-size:16px;line-height:30px;background:var(--footer-bg);color:var(--fg);border-radius:5px;display:block;padding:0 10px;font-weight:550;margin:0}
+.stage-main{display:grid;grid-template-columns:408px minmax(0,1fr);column-gap:64px;align-items:stretch;min-height:0;padding:28px 0}
+.clock-block{background:var(--clock-bg);color:var(--clock-fg);border:0;border-radius:14px;padding:29px 30px 26px;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;align-self:stretch;text-align:left;height:100%;margin:0;min-width:0}
+.clock-kicker{height:32px;flex:0 0 32px;line-height:32px;font-size:16px;letter-spacing:.025em;font-weight:450;color:var(--clock-dim);margin:0 0 31px;padding:0;display:flex;align-items:center;justify-content:space-between}
+.clock-kicker:after{content:'';display:block;width:9px;height:9px;border-radius:50%;background:#e5edaf}
+.stage[data-theme=night] .clock-kicker:after{background:#394728}
+.time-group{display:flex;width:100%;justify-content:center;gap:9px;align-items:baseline;white-space:nowrap;min-height:0;margin:0}
+.main-time{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:124px;line-height:1.05;letter-spacing:-.065em;font-weight:500;color:var(--clock-fg);font-variant-numeric:tabular-nums lining-nums}
+.clock-block.seconds-on .main-time{font-size:110px}
+.seconds{font-size:26px;line-height:1;font-weight:400;color:var(--clock-dim)}
+.ampm{font-size:14px;line-height:22px;font-weight:400;letter-spacing:0;text-align:center;color:var(--clock-dim);margin-top:8px}
+.clock-tail{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:16px;margin-top:21px}
+.analog-clock{display:block;width:184px;height:184px;max-height:100%;flex:0 1 auto;overflow:visible;color:var(--clock-fg)}
+.dial-face{fill:var(--dial-bg);stroke:none}
+.dial-tick{stroke:var(--clock-fg);stroke-width:1.4;opacity:.34}
+.dial-tick.major{stroke-width:2;opacity:.87}
+.dial-hour{stroke:var(--clock-fg);stroke-width:6;stroke-linecap:round}
+.dial-minute{stroke:var(--clock-fg);stroke-width:4;stroke-linecap:round}
+.dial-second{stroke:#e5edaf;stroke-width:1.4;stroke-linecap:round}
+.stage[data-theme=night] .dial-second{stroke:#696f43}
+.dial-center{fill:var(--clock-fg);stroke:none}
+.clock-subline{font-size:17px;font-weight:400;line-height:1.65;letter-spacing:-.01em;color:var(--clock-dim);margin:0;text-align:center;max-width:100%;width:100%;max-height:110px;overflow:hidden;overflow-wrap:anywhere;white-space:pre-line}
+.clock-block.has-note .analog-clock{width:140px;height:140px}
+.message-block,.message-block.center{--message-label-height:32px;--message-gap:31px;height:100%;min-width:0;min-height:0;padding:29px 0 16px;display:grid;grid-template-rows:32px minmax(0,1fr);row-gap:31px;align-items:start;align-content:stretch;justify-content:stretch;text-align:left}
+.message-block.center{text-align:center}
+.message-category{grid-row:1;justify-self:start;display:inline-flex;align-items:center;justify-content:center;height:32px;line-height:32px;font-size:16px;font-weight:600;letter-spacing:-.01em;color:var(--tag-fg);background:var(--tag-bg);border-radius:4px;border:0;padding:0 12px;margin:0;max-width:100%;white-space:nowrap}
+.message-block.center .message-category{justify-self:center}
+.message-category:before,.message-category:after{content:none}
+.message-fit{grid-row:2;align-self:start;width:100%;min-width:0;min-height:0;max-height:none;overflow:hidden}
+.stage-message{font-size:88px;line-height:1.36;letter-spacing:-.045em;font-weight:700;color:var(--fg);margin:0;font-style:normal;word-break:keep-all;overflow-wrap:anywhere;white-space:pre-wrap}
+.message-emphasis{color:inherit;background:none;text-decoration:none;box-shadow:none;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.stage[data-emphasis=true] .message-emphasis{color:var(--stage-accent)}
+.stage-footer{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:24px;align-items:center;min-height:0;border:0;background:var(--footer-bg);border-radius:9px;padding:0 23px}
+.stage-notice{min-width:0;min-height:30px;font-size:21px;line-height:30px;display:flex;gap:18px;align-items:center;color:var(--fg);font-weight:400}
+.notice-label{display:inline-flex;align-items:center;color:var(--stage-accent);font-size:14px;line-height:30px;font-weight:650;background:none;padding:0;letter-spacing:.03em;border:0}
+.notice-label:after{content:'';display:block;width:1px;height:16px;background:var(--stage-line);margin-left:18px}
+.notice-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.stage-pages{height:30px;line-height:30px;display:flex;align-items:center;gap:7px;color:var(--dim)}
+.page-mark{width:5px;height:5px;border-radius:2px;background:var(--dim);opacity:.32}.page-mark.active{width:18px;background:var(--stage-accent);opacity:1}
+.stage-pages b{font-family:Arial,sans-serif;font-size:12px;line-height:30px;font-weight:500;letter-spacing:.05em;margin-left:10px}
+/* Only-clock and only-message modes are still fully supported. */
+.stage[data-mode=clock] .stage-main{display:flex;justify-content:center;align-items:center;padding:28px 0}
+.stage[data-mode=clock] .clock-block{align-self:stretch;align-items:center;justify-content:center;width:100%;height:100%;padding:20px 40px;border-radius:14px;background:var(--clock-bg);color:var(--clock-fg);text-align:center}
+.stage[data-mode=clock] .clock-kicker{color:var(--clock-dim);font-size:20px;line-height:32px;height:32px;margin:0 0 27px;gap:16px}
+.stage[data-mode=clock] .time-group{justify-content:center;gap:18px}
+.stage[data-mode=clock] .main-time{font-size:290px;font-weight:400;line-height:1;letter-spacing:-.06em;color:var(--clock-fg)}
+.stage[data-mode=clock] .seconds{font-size:64px;color:var(--clock-dim)}
+.stage[data-mode=clock] .ampm{font-size:18px;color:var(--clock-dim);margin-top:18px}
+.stage[data-mode=clock] .clock-tail{display:none}
+.stage[data-mode=message] .stage-main{display:block;padding:28px 0}
+.stage[data-mode=message] .message-block{height:100%;padding:29px 20px 16px;text-align:left;align-items:start}
+.stage[data-mode=message] .message-block.center{text-align:center}
+.stage[data-mode=message] .message-category{justify-self:start;margin:0}
+.stage[data-mode=message] .message-block.center .message-category{justify-self:center}
+.stage[data-mode=message] .stage-message{font-size:112px;line-height:1.36;letter-spacing:-.04em}
+.presenting{background:var(--paper)}
+.display-toolbar{border:1px solid #ffffff22;background:#262d3ff5;border-radius:10px}.display-toolbar .shortcut{color:#bac4e0}
+@media(max-width:1100px){.workspace{grid-template-columns:312px minmax(0,1fr);gap:20px;padding:22px}.template-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:800px){.app-header{height:74px;padding:0 15px}.app-brand h1{font-size:17px}.app-brand p{font-size:9px}.brandmark{width:32px;height:32px}.workspace{display:flex;flex-direction:column;padding:16px;gap:20px}.control-panel{position:static;max-height:none;width:100%;order:2}.right-column{order:1;width:100%}.header-actions{gap:6px}.header-actions .btn{font-size:11px;padding:9px 10px}.preview-shell{border-radius:9px}.mood-dot{font-size:10px;padding:6px 8px}.preview-note{margin-top:12px}.template-section{margin-top:22px}.template-card{min-height:100px}.app-foot{margin-top:15px}.control-panel .tabpane{padding:19px 18px 22px}}
+@media(max-width:380px){.app-brand p{display:none}.app-brand h1{font-size:15px}.brandmark{width:27px;height:27px}.app-brand{gap:7px}.header-actions .btn{font-size:10px;padding:8px}.workspace{padding:12px}.template-card{padding:13px}.template-card p{font-size:12px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+
+/* v7 · White, crisp type and one small, optional shape.
+   The v6 grid and behaviors are retained. No image assets or font downloads. */
+:root{--ink:#252b36;--muted:#727d8d;--paper:#f5f7fa;--line:#e3e7ef;--green:#3556e8;--soft:#eff3ff;--accent:#3556e8;--error:#b14556}
+body{background:var(--paper)}
+.app-header{background:#ffffff;border-color:var(--line)}
+.app-brand h1{color:var(--ink)}.app-brand p{color:var(--muted)}
+.brandmark{background:#3556e8;border-radius:10px}
+.control-panel{background:#fff;border-color:var(--line)}
+.panel-top .caps{color:var(--muted)}
+.panel-top select,.segmented{background:#f4f6fa}
+.tab{color:var(--muted)}.tab[aria-selected=true]{color:#3556e8}.tabs .tab[aria-selected=true]:after{background:#3556e8}
+.btn,.iconbtn,input[type=text],input[type=date],input[type=number],textarea,select{border-color:var(--line)}
+.btn:hover,.iconbtn:hover{background:#f4f6fb}
+.btn.primary{background:#3556e8;border-color:#3556e8}.btn.primary:hover{background:#2847cf}
+.btn.soft{background:#eff3ff;border-color:#e3e9ff;color:#3556d2}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline-color:#3556e8}
+input[type=checkbox],input[type=range]{accent-color:#3556e8}
+.msg-item{border-color:var(--line)}.msg-item.selected{background:#f1f4ff;border-color:#3556e8}
+.msg-num,.msg-item .msg-num{color:#8590a0}.msg-item.selected .msg-num{color:#3556e8}
+.live-dot{background:#3556e8}.count-pill{background:#edf2ff;color:#5e70bd}
+.add-message{color:#586d9c;border-color:#ccd6ee}.add-message:hover{background:#f4f6ff}
+.seg{color:#768297}.seg.active{color:#3556e8;border-color:#dce4fa;background:#fff}
+.helpbox,.saved-notice{background:#f5f7fa;color:#6a7688}
+.warning{background:#fff3f5;color:#984359}
+.theme-btn{color:#768297}.theme-btn.active{background:#f2f5ff;border-color:#aabcf4;color:#3556e8}
+.theme-btn[data-theme=paper] .swatch{background:#3556e8}
+.theme-btn[data-theme=forest] .swatch{background:#b94e43}
+.theme-btn[data-theme=night] .swatch{background:#1c2330;box-shadow:inset -14px 0 #8aa6ff}
+.graphic-options .checkrow{color:#69758b}
+.preview-heading h2 small,.save-status{color:#8090a4}.save-status:before{background:#3c916b}
+.preview-shell{background:#fff;box-shadow:0 0 0 1px #e2e7f0,0 10px 30px #23375b08;border-radius:12px}
+.preview-controls .iconbtn{background:#fff;border-color:var(--line)}
+.rotation-state{color:#6c7a92}
+.mood-strip,.detail-strip{color:#778398;font-size:11px}
+.mood-dot{color:#718097}.mood-dot.active{color:#3556e8;background:#eff3ff;border-color:#d6e1ff}
+.mood-dot[data-palette=paper]{--mood:#3556e8!important}
+.mood-dot[data-palette=forest]{--mood:#b94e43!important}
+.mood-dot[data-palette=night]{--mood:#1c2330!important}
+.preview-note strong{color:#66748c}.preview-note p{color:#8792a3}
+.note-symbol{background:#edf2fa;color:#7d8ba3}
+.template-heading h3{color:#2a3241}.template-heading p{color:#8793a4}
+.filter-btn{color:#758399}.filter-btn.active{color:#3556d2;background:#eef3ff}
+.template-card,.template-card:nth-child(n){background:#fff;border-color:var(--line);border-radius:10px}
+.template-card:hover{background:#f6f8ff;border-color:#c1cdf3}
+.template-card p{color:#3f495a}.template-card .caps{color:#8592a7}
+.template-card .caps:before{background:#3556e8}.template-card .plus{color:#9aa8bd}
+.app-foot{color:#96a2b5}.toast{background:#2c3a58}
+/* No cream, yellow-green or beige in any light stage surface. */
+.stage,.stage[data-theme=paper]{--bg:#ffffff;--fg:#242b38;--dim:#7f899c;--stage-accent:#3556e8;--stage-line:#e6eaf2;--clock-bg:#3556e8;--clock-fg:#ffffff;--clock-dim:#e0e7ff;--tag-bg:#eff3ff;--tag-fg:#3556d2;--footer-bg:#f5f7fb;--dial-bg:#ffffff09;--point-clover:#267950;--point-heart:#e25268}
+.stage[data-theme=forest]{--bg:#ffffff;--fg:#2c2931;--dim:#8a8492;--stage-accent:#b94e43;--stage-line:#ece8ee;--clock-bg:#b94e43;--clock-fg:#ffffff;--clock-dim:#ffdedb;--tag-bg:#fff1f0;--tag-fg:#a9473d;--footer-bg:#f7f7fa;--dial-bg:#ffffff09;--point-clover:#267950;--point-heart:#df4d63}
+.stage[data-theme=night]{--bg:#1c2330;--fg:#f7f9ff;--dim:#a5b1c8;--stage-accent:#9bb2ff;--stage-line:#364155;--clock-bg:#344ec5;--clock-fg:#ffffff;--clock-dim:#dce5ff;--tag-bg:#2a3653;--tag-fg:#bdceff;--footer-bg:#252e3e;--dial-bg:#ffffff0c;--point-clover:#94d7b8;--point-heart:#ff9eb2}
+.stage[data-theme] .clock-kicker:after{content:none}
+.clock-block,.stage[data-mode=clock] .clock-block{border-radius:16px}
+.message-category{border-radius:6px;font-weight:550}
+.stage-footer{border-radius:10px}
+.stage-date strong{border-radius:6px}
+.dial-second,.stage[data-theme=night] .dial-second{stroke:var(--clock-dim)}
+/* Crisp SVG shapes rather than OS-dependent emoji. They never flash or move. */
+.point-definitions{position:absolute;pointer-events:none;overflow:hidden}
+.point-svg{display:block;fill:currentColor;stroke:none;stroke-width:0;flex-shrink:0}
+.point-svg path,.point-svg use{stroke:none;fill:currentColor}
+.point-picker{display:flex;gap:8px;align-items:center}
+.point-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid #e2e8f3;background:#fff;color:#758196;font-size:11px;font-weight:500;border-radius:8px;padding:9px 10px;min-height:38px;flex:1}
+.point-btn .point-svg{width:23px;height:23px}
+.point-btn[data-point=clover] .point-svg{color:#267950}
+.point-btn[data-point=heart] .point-svg{color:#e25268}
+.point-btn:hover{background:#f6f8fc}
+.point-btn.active{border-color:#bcccf2;background:#f2f6ff;color:#3556d2}
+.point-btn:focus-visible{outline:2px solid #3556e8;outline-offset:3px}
+.no-point{width:23px;display:inline-block;text-align:center;font-size:20px;font-weight:400;color:#a1adbf}
+.point-hint{margin-top:9px;color:#8390a5}
+.detail-strip{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 1px 0}
+.quick-points{gap:5px}.quick-points .point-btn{padding:5px 9px;min-height:32px;flex:0 0 auto;font-size:10px;gap:5px}
+.quick-points .point-svg{width:18px;height:18px}.quick-points .no-point{width:18px;font-size:16px}
+.clock-point{width:25px;height:25px;color:var(--clock-fg)}
+.message-block,.message-block.center{grid-template-columns:minmax(0,1fr)}
+.message-category{grid-column:1;grid-row:1;max-width:calc(100% - 80px)}
+.message-fit{grid-column:1;grid-row:2}
+.message-point{grid-column:1;grid-row:1;align-self:center;justify-self:end;width:46px;height:46px;color:var(--point-clover);margin:0 3px 0 0}
+.stage[data-point=heart] .message-point{color:var(--point-heart);width:44px;height:44px}
+.stage[data-point=none] .live-point{display:none}
+.stage[data-point=none] .message-category{max-width:100%}
+.stage[data-mode=message] .message-point{width:46px;height:46px}
+.stage[data-mode=clock] .clock-point{width:25px;height:25px}
+@media(max-width:800px){.detail-strip{gap:8px}.quick-points{gap:4px}.quick-points .point-btn{padding:5px 7px;font-size:10px}.point-picker:not(.quick-points){gap:8px}}
+@media print{.detail-strip{display:none!important}}
+
+</style>
 </head>
 <body>
-<main><h1>교실 보드</h1><p id="status" role="status">시계와 메시지 화면을 열고 있어요.</p><button id="retry" hidden onclick="location.reload()">다시 열기</button><noscript><p>JavaScript를 허용한 브라우저에서 열어 주세요.</p></noscript></main>
+<svg class="point-definitions" width="0" height="0" aria-hidden="true" focusable="false"><defs><symbol id="ww-point-clover" viewBox="0 0 64 64"><path d="M32 30 C27 25 18 21 18 14 C18 6 27 4 32 11 C37 4 46 6 46 14 C46 21 37 25 32 30 Z" transform="rotate(0 32 32)"/><path d="M32 30 C27 25 18 21 18 14 C18 6 27 4 32 11 C37 4 46 6 46 14 C46 21 37 25 32 30 Z" transform="rotate(90 32 32)"/><path d="M32 30 C27 25 18 21 18 14 C18 6 27 4 32 11 C37 4 46 6 46 14 C46 21 37 25 32 30 Z" transform="rotate(180 32 32)"/><path d="M32 30 C27 25 18 21 18 14 C18 6 27 4 32 11 C37 4 46 6 46 14 C46 21 37 25 32 30 Z" transform="rotate(270 32 32)"/></symbol><symbol id="ww-point-heart" viewBox="0 0 64 64"><path d="M32 55 C25 49 7 37 7 23 C7 8 24 5 32 17 C40 5 57 8 57 23 C57 37 39 49 32 55 Z"/></symbol></defs></svg>
+<noscript>이 전광판을 사용하려면 브라우저에서 JavaScript를 허용해 주세요.</noscript>
+<header class="app-header">
+ <div class="app-brand"><div class="brandmark" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M10 5v14m4-9h4m-4 4h4"/></svg></div><div><h1>교실 보드</h1><p>시계 · 메시지 · 공지</p></div></div>
+ <div class="header-actions"><button class="btn" id="shareBtn"><svg viewBox="0 0 24 24"><path d="M12 16V3m-4 4 4-4 4 4M5 13v7h14v-7"/></svg>공유 · 백업</button><button class="btn primary" id="presentBtn"><svg viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg>화면 띄우기</button></div>
+</header>
+<div class="workspace">
+ <aside class="control-panel" aria-label="전광판 설정">
+  <div class="panel-top"><div class="caps">저장한 전광판</div><div class="row"><select id="boardSelect" aria-label="저장한 전광판 선택"></select><button class="iconbtn" id="newBoardBtn" aria-label="새 전광판 만들기" title="새 전광판 만들기"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button></div></div>
+  <div class="tabs" role="tablist" aria-label="설정 종류"><button class="tab" role="tab" id="tab-messages" aria-controls="pane-messages" aria-selected="true" data-tab="messages">메시지</button><button class="tab" role="tab" id="tab-appearance" aria-controls="pane-appearance" aria-selected="false" data-tab="appearance">화면 설정</button><button class="tab" role="tab" id="tab-storage" aria-controls="pane-storage" aria-selected="false" data-tab="storage">내 전광판</button></div>
+  <section class="tabpane" id="pane-messages" role="tabpanel" aria-labelledby="tab-messages">
+   <div class="section-head">메시지 목록 <span class="count-pill" id="messageCount">3개</span></div>
+   <div class="message-list" id="messageList"></div><button class="add-message" id="addMessageBtn">＋ 새 메시지 추가</button>
+   <div id="messageEditor"><div class="section-head editor-head"><span>메시지 편집</span><div class="mini-actions"><button class="iconbtn" id="moveUpBtn" aria-label="메시지 위로 이동" title="위로 이동"><svg viewBox="0 0 24 24"><path d="m6 14 6-6 6 6"/></svg></button><button class="iconbtn" id="moveDownBtn" aria-label="메시지 아래로 이동" title="아래로 이동"><svg viewBox="0 0 24 24"><path d="m6 10 6 6 6-6"/></svg></button><button class="iconbtn" id="deleteMessageBtn" aria-label="선택한 메시지 삭제" title="메시지 삭제"><svg viewBox="0 0 24 24"><path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7"/></svg></button></div></div>
+   <label class="field"><span class="field-label">작은 제목 <small>선택 사항</small></span><input id="messageTitle" type="text" maxlength="30" placeholder="예: 오늘의 메모"></label>
+   <label class="field"><span class="field-label">메시지 내용 <small id="charCount">0 / 240</small></span><textarea id="messageText" rows="4" maxlength="240" placeholder="화면에 표시할 내용을 입력하세요.&#10;줄바꿈도 그대로 반영됩니다."></textarea></label>
+   <div id="textFitHint" class="hint" style="margin-top:-10px;margin-bottom:14px">2~4줄 권장 · 줄바꿈은 8줄까지 지원합니다.</div>
+   <label class="field"><span class="field-label">마지막으로 보여줄 날짜 <small>비워두면 계속 표시</small></span><input id="messageExpiry" type="date" aria-label="메시지 게시 종료일"></label>
+   <div class="checkrow"><input id="messageEnabled" type="checkbox"><label for="messageEnabled">이 메시지를 화면에 표시하기</label></div>
+   <div id="expiryHint" class="error-text" hidden></div></div>
+   <div class="rule"></div><div class="checkrow spread"><label class="checkrow" for="autoRotate"><input id="autoRotate" type="checkbox">메시지 자동으로 넘기기</label><span class="number-with-unit"><input id="rotateSeconds" type="number" min="10" max="600" step="5" aria-label="메시지 전환 간격(초)"><span>초</span></span></div><p class="hint" style="margin-top:9px">꺼두면 현재 메시지를 고정해요. 게시 종료일은 한국 날짜 기준이에요.</p>
+  </section>
+  <section class="tabpane" id="pane-appearance" role="tabpanel" aria-labelledby="tab-appearance" hidden>
+   <div class="section-head">화면 모드</div><div class="segmented" id="modeGroup"><button class="seg" data-mode="both"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 4v16m4-10h4m-4 4h4"/></svg>시계 + 메시지</button><button class="seg" data-mode="clock"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></svg>큰 시계</button><button class="seg" data-mode="message"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 9h12M6 13h12M6 17h7"/></svg>큰 메시지</button></div>
+   <div class="settings-title">색상</div><div class="themes" id="themeGroup"><button class="theme-btn" data-theme="paper"><span class="swatch"></span>블루</button><button class="theme-btn" data-theme="forest"><span class="swatch"></span>브릭</button><button class="theme-btn" data-theme="night"><span class="swatch"></span>나이트</button></div>
+   <div class="settings-title">작은 포인트</div><div class="point-picker " role="group" aria-label="작은 포인트 모양"><button type="button" class="point-btn" data-point="clover" aria-pressed="true"><svg class="point-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><use href="#ww-point-clover"/></svg><span>클로버</span></button><button type="button" class="point-btn" data-point="heart" aria-pressed="false"><svg class="point-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><use href="#ww-point-heart"/></svg><span>하트</span></button><button type="button" class="point-btn" data-point="none" aria-pressed="false"><span class="no-point" aria-hidden="true">—</span><span>없음</span></button></div><p class="hint point-hint">색과 글씨는 단정하게, 모서리에만 작게.</p>
+<div class="graphic-options">
+    <label class="checkrow" for="graphicClock"><input id="graphicClock" type="checkbox">작은 아날로그 시계 함께 표시</label>
+    <label class="checkrow" for="colorEmphasis"><input id="colorEmphasis" type="checkbox">메시지 마지막 줄에 포인트색</label>
+   </div><div class="rule"></div><label class="field"><span class="field-label">메시지 글자 크기 <small id="fontSizeValue">100%</small></span><input id="fontScale" type="range" min="75" max="135" step="5"></label><p class="hint" style="margin-top:-10px;margin-bottom:16px">긴 문장은 화면을 벗어나지 않도록 자동으로 줄여요.</p>
+   <label class="field"><span class="field-label">메시지 정렬</span><select id="messageAlign"><option value="left">왼쪽 정렬</option><option value="center">가운데 정렬</option></select></label>
+   <div class="inline-fields"><label class="field"><span class="field-label">시간 표시</span><select id="clockFormat"><option value="24">24시간</option><option value="12">12시간</option></select></label><label class="field"><span class="field-label">초 표시</span><select id="showSeconds"><option value="false">표시 안 함</option><option value="true">표시</option></select></label></div>
+   <p class="hint">한국 시간 · 기기의 현재 시각을 기준으로 표시해요.</p><div class="rule"></div><label class="field"><span class="field-label">시계 아래 메모 <small>비워두면 숨김</small></span><textarea id="clockNote" rows="2" maxlength="48" style="min-height:76px" placeholder="예: 독해 15분 · 3시 30분까지"></textarea></label>
+   <label class="field"><span class="field-label">학원 이름</span><input id="brandName" type="text" maxlength="36" placeholder="학원 이름"></label><label class="field"><span class="field-label">작은 문구</span><input id="tagline" type="text" maxlength="60" placeholder="Warm and Wise"></label>
+   <label class="field"><span class="field-label">아래쪽 한 줄 공지 <small>선택 사항</small></span><input id="notice" type="text" maxlength="64" placeholder="예: 다음 과제 확인하고 마무리."></label><label class="field"><span class="field-label">한 줄 공지 종료일</span><input id="noticeExpiry" type="date"></label>
+  </section>
+  <section class="tabpane" id="pane-storage" role="tabpanel" aria-labelledby="tab-storage" hidden>
+   <div class="section-head">내 전광판 이름</div><label class="field"><input id="boardName" type="text" maxlength="32" placeholder="예: 가영 · 중등 수업" aria-label="전광판 이름"></label>
+   <div class="saved-notice">수정한 내용은 <b>이 브라우저에 자동 저장</b>돼요. 같은 컴퓨터를 함께 쓰면, 각자 새 전광판을 만들어 구분해 주세요.<br>다른 기기와 자동으로 동기화되지는 않아요.</div>
+   <div class="rule"></div><button class="btn wide" id="duplicateBoardBtn">현재 전광판 복사해서 만들기</button><button class="btn wide" id="backupBtn" style="margin-top:9px">설정 파일로 백업 (.json)</button><button class="btn wide" id="importBtn" style="margin-top:9px">설정 파일 가져오기</button>
+   <div class="helpbox warning" style="margin-top:18px">브라우저 데이터를 지우거나 시크릿 창을 닫으면 저장한 설정이 사라질 수 있어요. 중요한 문구는 파일로 백업해 두세요.</div>
+   <div class="rule"></div><button class="btn small danger" id="deleteBoardBtn">이 전광판 삭제</button><p class="hint" style="margin-top:10px">다른 전광판의 설정은 바뀌지 않아요.</p>
+  </section>
+ </aside>
+ <main class="right-column">
+  <section class="preview-area" aria-label="전광판 미리 보기"><div class="preview-heading"><h2>미리보기 <small>아이들에게 보이는 화면</small></h2><span class="save-status" id="saveStatus" role="status">이 브라우저에 저장됨</span></div>
+  <div class="preview-shell" id="previewShell"><div class="stage" id="stage" data-theme="paper" data-mode="both">
+   <div class="stage-header"><div class="stage-brand"><span class="board-sign" aria-hidden="true"></span><strong id="stageBrand">김가영어학원</strong><span id="stageTagline" hidden></span></div><div class="stage-date"><div><strong id="stageDay">월요일</strong></div><span id="stageDate">2026.09.07</span></div></div>
+   <div class="stage-main"><div class="clock-block" id="clockBlock"><div class="clock-kicker"><span>현재 시각</span><svg class="point-svg clock-point live-point" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><use href="#ww-point-clover"/></svg></div><div class="time-group"><time class="main-time" id="clockTime" aria-label="현재 시각">00:00</time><span class="seconds" id="clockSeconds" hidden>00</span></div><div class="ampm" id="clockPeriod">오후</div><div class="clock-tail"><svg class="analog-clock" id="analogClock" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+ <circle class="dial-face" cx="100" cy="100" r="99"/>
+ <line class="dial-tick major" x1="100.000" y1="22.000" x2="100.000" y2="10.000"/>
+ <line class="dial-tick minor" x1="108.780" y1="16.460" x2="109.408" y2="10.493"/>
+ <line class="dial-tick minor" x1="117.465" y1="17.836" x2="118.712" y2="11.967"/>
+ <line class="dial-tick minor" x1="125.957" y1="20.111" x2="127.812" y2="14.405"/>
+ <line class="dial-tick minor" x1="134.166" y1="23.262" x2="136.606" y2="17.781"/>
+ <line class="dial-tick major" x1="139.000" y1="32.450" x2="145.000" y2="22.058"/>
+ <line class="dial-tick minor" x1="149.374" y1="32.043" x2="152.901" y2="27.188"/>
+ <line class="dial-tick minor" x1="156.207" y1="37.576" x2="160.222" y2="33.117"/>
+ <line class="dial-tick minor" x1="162.424" y1="43.793" x2="166.883" y2="39.778"/>
+ <line class="dial-tick minor" x1="167.957" y1="50.626" x2="172.812" y2="47.099"/>
+ <line class="dial-tick major" x1="167.550" y1="61.000" x2="177.942" y2="55.000"/>
+ <line class="dial-tick minor" x1="176.738" y1="65.834" x2="182.219" y2="63.394"/>
+ <line class="dial-tick minor" x1="179.889" y1="74.043" x2="185.595" y2="72.188"/>
+ <line class="dial-tick minor" x1="182.164" y1="82.535" x2="188.033" y2="81.288"/>
+ <line class="dial-tick minor" x1="183.540" y1="91.220" x2="189.507" y2="90.592"/>
+ <line class="dial-tick major" x1="178.000" y1="100.000" x2="190.000" y2="100.000"/>
+ <line class="dial-tick minor" x1="183.540" y1="108.780" x2="189.507" y2="109.408"/>
+ <line class="dial-tick minor" x1="182.164" y1="117.465" x2="188.033" y2="118.712"/>
+ <line class="dial-tick minor" x1="179.889" y1="125.957" x2="185.595" y2="127.812"/>
+ <line class="dial-tick minor" x1="176.738" y1="134.166" x2="182.219" y2="136.606"/>
+ <line class="dial-tick major" x1="167.550" y1="139.000" x2="177.942" y2="145.000"/>
+ <line class="dial-tick minor" x1="167.957" y1="149.374" x2="172.812" y2="152.901"/>
+ <line class="dial-tick minor" x1="162.424" y1="156.207" x2="166.883" y2="160.222"/>
+ <line class="dial-tick minor" x1="156.207" y1="162.424" x2="160.222" y2="166.883"/>
+ <line class="dial-tick minor" x1="149.374" y1="167.957" x2="152.901" y2="172.812"/>
+ <line class="dial-tick major" x1="139.000" y1="167.550" x2="145.000" y2="177.942"/>
+ <line class="dial-tick minor" x1="134.166" y1="176.738" x2="136.606" y2="182.219"/>
+ <line class="dial-tick minor" x1="125.957" y1="179.889" x2="127.812" y2="185.595"/>
+ <line class="dial-tick minor" x1="117.465" y1="182.164" x2="118.712" y2="188.033"/>
+ <line class="dial-tick minor" x1="108.780" y1="183.540" x2="109.408" y2="189.507"/>
+ <line class="dial-tick major" x1="100.000" y1="178.000" x2="100.000" y2="190.000"/>
+ <line class="dial-tick minor" x1="91.220" y1="183.540" x2="90.592" y2="189.507"/>
+ <line class="dial-tick minor" x1="82.535" y1="182.164" x2="81.288" y2="188.033"/>
+ <line class="dial-tick minor" x1="74.043" y1="179.889" x2="72.188" y2="185.595"/>
+ <line class="dial-tick minor" x1="65.834" y1="176.738" x2="63.394" y2="182.219"/>
+ <line class="dial-tick major" x1="61.000" y1="167.550" x2="55.000" y2="177.942"/>
+ <line class="dial-tick minor" x1="50.626" y1="167.957" x2="47.099" y2="172.812"/>
+ <line class="dial-tick minor" x1="43.793" y1="162.424" x2="39.778" y2="166.883"/>
+ <line class="dial-tick minor" x1="37.576" y1="156.207" x2="33.117" y2="160.222"/>
+ <line class="dial-tick minor" x1="32.043" y1="149.374" x2="27.188" y2="152.901"/>
+ <line class="dial-tick major" x1="32.450" y1="139.000" x2="22.058" y2="145.000"/>
+ <line class="dial-tick minor" x1="23.262" y1="134.166" x2="17.781" y2="136.606"/>
+ <line class="dial-tick minor" x1="20.111" y1="125.957" x2="14.405" y2="127.812"/>
+ <line class="dial-tick minor" x1="17.836" y1="117.465" x2="11.967" y2="118.712"/>
+ <line class="dial-tick minor" x1="16.460" y1="108.780" x2="10.493" y2="109.408"/>
+ <line class="dial-tick major" x1="22.000" y1="100.000" x2="10.000" y2="100.000"/>
+ <line class="dial-tick minor" x1="16.460" y1="91.220" x2="10.493" y2="90.592"/>
+ <line class="dial-tick minor" x1="17.836" y1="82.535" x2="11.967" y2="81.288"/>
+ <line class="dial-tick minor" x1="20.111" y1="74.043" x2="14.405" y2="72.188"/>
+ <line class="dial-tick minor" x1="23.262" y1="65.834" x2="17.781" y2="63.394"/>
+ <line class="dial-tick major" x1="32.450" y1="61.000" x2="22.058" y2="55.000"/>
+ <line class="dial-tick minor" x1="32.043" y1="50.626" x2="27.188" y2="47.099"/>
+ <line class="dial-tick minor" x1="37.576" y1="43.793" x2="33.117" y2="39.778"/>
+ <line class="dial-tick minor" x1="43.793" y1="37.576" x2="39.778" y2="33.117"/>
+ <line class="dial-tick minor" x1="50.626" y1="32.043" x2="47.099" y2="27.188"/>
+ <line class="dial-tick major" x1="61.000" y1="32.450" x2="55.000" y2="22.058"/>
+ <line class="dial-tick minor" x1="65.834" y1="23.262" x2="63.394" y2="17.781"/>
+ <line class="dial-tick minor" x1="74.043" y1="20.111" x2="72.188" y2="14.405"/>
+ <line class="dial-tick minor" x1="82.535" y1="17.836" x2="81.288" y2="11.967"/>
+ <line class="dial-tick minor" x1="91.220" y1="16.460" x2="90.592" y2="10.493"/>
+ <line class="dial-hour" id="hourHand" x1="100" y1="108" x2="100" y2="52"/>
+ <line class="dial-minute" id="minuteHand" x1="100" y1="108" x2="100" y2="27"/>
+ <line class="dial-second" id="secondHand" x1="100" y1="116" x2="100" y2="22" hidden/>
+ <circle class="dial-center" cx="100" cy="100" r="5"/>
+ </svg><div class="clock-subline" id="clockSubline" hidden></div></div></div><div class="message-block" id="messageBlock"><div class="message-category" id="stageCategory">오늘의 메모</div><svg class="point-svg message-point live-point" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><use href="#ww-point-clover"/></svg><div class="message-fit" id="messageFit"><p class="stage-message" id="stageMessage">답은 맞혔고,&#10;이유는?</p></div></div></div>
+   <div class="stage-footer"><div class="stage-notice" id="stageNoticeWrap"><span class="notice-label">안내</span><span class="notice-text" id="stageNotice">다음 과제 확인하고 마무리.</span></div><div class="stage-pages" id="stagePages" aria-label="현재 메시지 순서"></div></div>
+  </div>
+  <div class="display-toolbar" id="displayToolbar"><button class="btn small" id="displayPrev" aria-label="이전 메시지">←</button><button class="btn small" id="displayPause">일시정지</button><button class="btn small" id="displayNext" aria-label="다음 메시지">→</button><span class="shortcut">← → 메시지 · Space 일시정지</span><button class="btn small" id="exitDisplay">편집으로 돌아가기</button></div></div>
+  <div class="preview-controls"><span class="hint" id="previewHint">시계 + 메시지</span><div class="row"><span class="rotation-state" id="rotationState">45초마다 전환</span><button class="iconbtn" id="prevMessageBtn" aria-label="이전 메시지"><svg viewBox="0 0 24 24"><path d="m14 5-7 7 7 7"/></svg></button><button class="iconbtn" id="pauseBtn" aria-label="자동 넘김 일시정지"><svg viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg></button><button class="iconbtn" id="nextMessageBtn" aria-label="다음 메시지"><svg viewBox="0 0 24 24"><path d="m10 5 7 7-7 7"/></svg></button></div></div>
+  <div class="mood-strip"><span>포인트 색상</span><div class="mood-buttons"><button class="mood-dot" data-palette="paper" aria-label="블루 색상" title="블루" style="--mood:#3556e8">블루</button><button class="mood-dot" data-palette="forest" aria-label="브릭 색상" title="브릭" style="--mood:#b94e43">브릭</button><button class="mood-dot" data-palette="night" aria-label="나이트 색상" title="나이트" style="--mood:#1c2330">나이트</button></div></div><div class="detail-strip"><span>작은 포인트</span><div class="point-picker quick-points" role="group" aria-label="작은 포인트 모양"><button type="button" class="point-btn" data-point="clover" aria-pressed="true"><svg class="point-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><use href="#ww-point-clover"/></svg><span>클로버</span></button><button type="button" class="point-btn" data-point="heart" aria-pressed="false"><svg class="point-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><use href="#ww-point-heart"/></svg><span>하트</span></button><button type="button" class="point-btn" data-point="none" aria-pressed="false"><span class="no-point" aria-hidden="true">—</span><span>없음</span></button></div></div><div class="preview-note"><div class="note-symbol"><svg viewBox="0 0 24 24"><rect x="3" y="10" width="18" height="11" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3m-5 5v2"/></svg></div><div><strong>선생님별로 따로 저장</strong><p>설정은 이 브라우저에만 저장돼요. 다른 컴퓨터의 선생님 화면은 바뀌지 않아요.<br>공용 컴퓨터에서는 왼쪽 ＋ 버튼으로 전광판을 나누어 쓰세요.</p></div></div></section>
+  <section class="template-section" aria-label="메시지 예시"><div class="template-heading"><div><h3>바로 쓰는 문구</h3><p>클릭하면 메시지 목록에 추가됩니다. 문구는 자유롭게 수정하세요.</p></div><div class="template-filters" id="templateFilters"><button class="filter-btn active" data-filter="all">전체</button><button class="filter-btn" data-filter="study">공부 방법</button><button class="filter-btn" data-filter="care">짧은 메모</button><button class="filter-btn" data-filter="notice">안내</button></div></div><div class="template-grid" id="templateGrid"></div></section>
+  <footer class="app-foot"><span>교실 보드 · v7.0</span><span>김가영어학원</span></footer>
+ </main>
+</div>
+<dialog id="shareDialog" aria-labelledby="shareTitle"><button class="iconbtn dialog-close" data-close="shareDialog" aria-label="닫기">×</button><h2 class="dialog-title" id="shareTitle">공유 · 백업</h2><p class="dialog-desc">현재 선택한 전광판만 공유돼요. 다른 선생님이 수정해도 내 화면은 바뀌지 않아요.</p>
+ <div class="helpbox warning" id="localShareNote" hidden>지금은 HTML 파일로 열었어요. 다른 컴퓨터에서 쓸 웹 주소는 아직 없어요. 아래의 <b>공유용 HTML 저장</b>으로 파일을 전달하거나, 이 페이지를 웹에 배포한 뒤 링크를 만드세요.</div>
+ <div class="dialog-section" id="linkShareSection"><h3>이 설정을 담은 링크</h3><p>보내는 시점의 복사본이에요. 문구를 나중에 바꾸어도 이미 보낸 링크는 바뀌지 않아요.</p><textarea id="shareUrl" class="share-url" readonly aria-label="설정 공유 링크"></textarea><div class="row" style="margin-top:9px"><button class="btn small primary" id="copyShareBtn">설정 링크 복사</button><button class="btn small" id="copyBaseBtn">기본 접속 주소 복사</button></div><p class="share-block-note">숨김·만료 메시지를 포함한 현재 전광판의 모든 문구가 링크에 들어가요. 학생 이름·성적 등 개인정보는 담지 마세요.</p></div>
+ <div class="dialog-section"><h3>문구가 담긴 실행 파일</h3><p>지금의 문구와 디자인을 담은 HTML이에요. 다른 선생님에게 파일을 보내면 인터넷 없이도 열고 수정할 수 있어요.</p><button class="btn" id="exportHtmlBtn">공유용 HTML 저장</button></div>
+ <div class="dialog-section"><h3>설정 백업</h3><p>설정 파일을 보관하거나 다른 기기의 전광판에서 불러오세요. 가져오기는 새 전광판으로 추가되며 기존 설정을 덮어쓰지 않아요.</p><div class="row"><button class="btn small" id="exportJsonBtn">설정 저장 (.json)</button><button class="btn small" id="importJsonBtn">설정 가져오기</button></div></div>
+ <div class="hint" style="margin-top:13px">이 버전에는 원격 제어·기기 간 실시간 동기화·계정 로그인이 없어요.</div>
+</dialog>
+<dialog id="nameDialog" aria-labelledby="nameTitle"><h2 class="dialog-title" id="nameTitle">새 전광판 만들기</h2><p class="dialog-desc">선생님 이름이나 수업 이름으로 구분해 두세요.</p><label class="field"><input type="text" id="newBoardName" maxlength="32" placeholder="예: 가영 · 중등 수업" aria-label="새 전광판 이름"></label><div class="dialog-actions"><button class="btn" data-close="nameDialog">취소</button><button class="btn primary" id="confirmNewBoard">만들기</button></div></dialog>
+<dialog id="confirmDialog" aria-labelledby="confirmTitle"><h2 class="dialog-title" id="confirmTitle">확인</h2><p class="dialog-desc" id="confirmText"></p><div class="dialog-actions"><button class="btn" id="cancelConfirm">취소</button><button class="btn primary" id="acceptConfirm">확인</button></div></dialog>
+<input type="file" id="importFile" class="file-upload" accept=".json,application/json">
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script id="starter-data" type="application/json">{}</script>
 <script>
-(async()=>{
- try {
-  if(typeof DecompressionStream==='undefined') throw new Error('browser');
-  const paths=['v7.part1.txt','v7.part2.txt','v7.part3.txt','v7.part4.txt'];
-  const lengths=[12988,12988,10651,2333];
-  const pieces=await Promise.all(paths.map(async path=>{const r=await fetch(new URL(path,location.href),{cache:'no-cache',credentials:'omit'});if(!r.ok)throw new Error('network');return r.text();}));
-  const bytes=Uint8Array.from(atob(pieces.map((piece,i)=>piece.slice(0,lengths[i])).join('').replace(/\s/g,'')),c=>c.charCodeAt(0));
-  const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
-  const buffer=await new Response(stream).arrayBuffer();
-  const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',buffer)),b=>b.toString(16).padStart(2,'0')).join('');
-  if(digest!=='7f9e55151546216ada0545e2d8494e31aecb048171e5249a11e0fc566ace8ff9')throw new Error('integrity');
-  const html=new TextDecoder('utf-8',{fatal:true}).decode(buffer);
-  document.open();document.write(html);document.close();
- }catch(error){
-  const status=document.getElementById('status');
-  if(status)status.textContent=error.message==='browser'?'최신 Chrome, Safari 또는 Edge에서 이 주소를 열어 주세요.':'화면을 불러오지 못했어요. 인터넷 연결을 확인하고 다시 열어 주세요.';
-  const retry=document.getElementById('retry');if(retry)retry.hidden=false;
-  console.error('Classroom board loading failed:',error);
+'use strict';
+// No external requests, dependencies, analytics, or remote storage.
+const ORIGINAL_DOCUMENT = '<!doctype html>\n' + document.documentElement.outerHTML;
+const $ = id => document.getElementById(id);
+const uid = () => (globalThis.crypto && crypto.randomUUID) ? crypto.randomUUID() : 'b'+Date.now().toString(36)+Math.random().toString(36).slice(2,10);
+const clone = value => JSON.parse(JSON.stringify(value));
+const LIMITS = {boards:30,messages:24,chars:240,importBytes:200000,hash:100000};
+const DEFAULT_MESSAGES = [
+ {
+  "title": "오늘의 메모",
+  "text": "답은 맞혔고,\n이유는?"
+ },
+ {
+  "title": "공부 방법",
+  "text": "다 풀었으면,\n이제 설명해 보자."
+ },
+ {
+  "title": "질문하기",
+  "text": "막히는 부분은\n표시하고 질문."
  }
-})();
+];
+const TEMPLATES = [
+ {
+  "kind": "study",
+  "title": "오늘의 메모",
+  "text": "답은 맞혔고,\n이유는?"
+ },
+ {
+  "kind": "study",
+  "title": "공부 방법",
+  "text": "다 풀었으면,\n이제 설명해 보자."
+ },
+ {
+  "kind": "care",
+  "title": "시작하기",
+  "text": "할 일은 하나씩.\n끝낸 건 확실히."
+ },
+ {
+  "kind": "study",
+  "title": "질문하기",
+  "text": "막히는 부분은\n표시하고 질문."
+ },
+ {
+  "kind": "notice",
+  "title": "마무리",
+  "text": "다음 과제 확인하고\n마무리."
+ },
+ {
+  "kind": "care",
+  "title": "다시 시작",
+  "text": "안 풀리는 날도 있지.\n일단 한 문제부터."
+ },
+ {
+  "kind": "study",
+  "title": "읽기",
+  "text": "단어 뜻 다음에는,\n문장 전체 뜻."
+ },
+ {
+  "kind": "study",
+  "title": "오답 확인",
+  "text": "답만 고치지 말고,\n틀린 이유까지."
+ },
+ {
+  "kind": "study",
+  "title": "복습",
+  "text": "오늘 배운 내용,\n책 덮고 설명해 보기."
+ },
+ {
+  "kind": "notice",
+  "title": "수업 준비",
+  "text": "책 펴고,\n오늘 할 일 확인."
+ },
+ {
+  "kind": "care",
+  "title": "잠깐 쉬기",
+  "text": "잠깐 쉬고,\n다시 시작."
+ },
+ {
+  "kind": "care",
+  "title": "진행 중",
+  "text": "아직 헷갈리면\n한 번 더 보면 되지."
+ }
+];
+const labelKind = {study:'공부 방법',care:'짧은 메모',notice:'안내'};
+function createBoard(name='나의 전광판') {return {id:uid(),name,brand:'김가영어학원',tagline:'',theme:'paper',pointStyle:'clover',graphicClock:true,colorEmphasis:true,clockNote:'',mode:'both',align:'left',fontScale:100,clockFormat:'24',showSeconds:false,notice:'다음 과제 확인하고 마무리.',noticeExpiry:'',autoRotate:true,rotateSeconds:45,messages:DEFAULT_MESSAGES.map(m=>({...m,id:uid(),enabled:true,expiry:''}))};}
+function text(v,max,fallback=''){return typeof v==='string'?v.slice(0,max):fallback;}
+function messageValue(value){const raw=text(value,LIMITS.chars).replace(/\r\n?/g,'\n');const lines=raw.split('\n');return lines.length<=8?raw:lines.slice(0,7).concat(lines.slice(7).join(' ')).join('\n');}
+function bounded(v,min,max,fallback){const n=Number(v);return Number.isFinite(n)?Math.max(min,Math.min(max,n)):fallback;}
+function dateField(v){if(typeof v!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(v))return '';const d=new Date(v+'T12:00:00Z');return !Number.isNaN(+d)&&d.toISOString().slice(0,10)===v?v:'';}
+function validateBoard(raw,keepId=false){
+ if(!raw||typeof raw!=='object'||!Array.isArray(raw.messages))throw Error('전광판 설정 형식이 아니에요. 이 전광판에서 저장한 JSON 파일을 선택해 주세요.');
+ const d=createBoard(); const modes=['both','clock','message'], themes=['forest','night','paper'];
+ const themeAliases={lavender:'paper',lime:'forest',peach:'paper',coffee:'night'}; const incomingTheme=themeAliases[raw.theme]||raw.theme;
+ return {id:keepId&&typeof raw.id==='string'?raw.id.slice(0,100):uid(),name:text(raw.name,32,'가져온 전광판')||'가져온 전광판',brand:text(raw.brand,36,d.brand),tagline:text(raw.tagline,60,d.tagline),theme:themes.includes(incomingTheme)?incomingTheme:d.theme,pointStyle:['clover','heart','none'].includes(raw.pointStyle)?raw.pointStyle:'clover',graphicClock:raw.graphicClock!==false,colorEmphasis:raw.colorEmphasis!==false,clockNote:text(raw.clockNote,48,d.clockNote),mode:modes.includes(raw.mode)?raw.mode:'both',align:raw.align==='center'?'center':'left',fontScale:bounded(raw.fontScale,75,135,100),clockFormat:raw.clockFormat==='12'?'12':'24',showSeconds:raw.showSeconds===true,notice:text(raw.notice,64),noticeExpiry:dateField(raw.noticeExpiry),autoRotate:raw.autoRotate===true,rotateSeconds:bounded(raw.rotateSeconds,10,600,45),messages:raw.messages.slice(0,LIMITS.messages).filter(m=>m&&typeof m==='object').map(m=>({id:uid(),title:text(m.title,30),text:messageValue(m.text),enabled:m.enabled!==false,expiry:dateField(m.expiry)}))};
+}
+// Update only an unmodified v4 example in local storage; retain every custom board.
+const LEGACY_FACTORY_MESSAGES = [{"title": "반가워, 오늘도", "text": "오늘도 잘 왔어.\n우리, 하나씩 해보자."}, {"title": "네 생각이 궁금해", "text": "답을 보기 전에,\n네 생각부터\n들려줄래?"}, {"title": "다시 돌아오면 돼", "text": "잠깐 멍해졌어?\n괜찮아,\n여기부터 다시."}];
+function refreshFactoryExample(raw) {
+ if (!raw || !Array.isArray(raw.messages) || raw.messages.length !== 3) return raw;
+ const untouched = raw.messages.every((m,i) => m &&
+  m.title === LEGACY_FACTORY_MESSAGES[i].title && m.text === LEGACY_FACTORY_MESSAGES[i].text &&
+  m.enabled !== false && !m.expiry);
+ if (!untouched || raw.tagline !== 'Warm and Wise' ||
+  raw.clockNote !== '잠깐 숨 고르고,\n내 속도로.' ||
+  raw.notice !== '집에 가기 전, 다음 과제도 한 번만 확인!' || raw.noticeExpiry) return raw;
+ return {...raw, tagline:'',clockNote:'',notice:'다음 과제 확인하고 마무리.',
+  messages:raw.messages.map((m,i)=>({...m,...DEFAULT_MESSAGES[i]}))};
+}
+let seed={};try{seed=JSON.parse($('starter-data').textContent);}catch(e){}
+// Stable data key: visual revisions must not discard saved teacher messages.
+const STORAGE_KEY = 'warmwise.classroom.v2'+(typeof seed.bundleId==='string'?'.'+seed.bundleId.slice(0,80):'');
+let db={boards:[],activeId:''}, storageOK=true, saveTimer, paused=false, presenting=false, fullscreenAcquired=false, editorId='', shownId='', lastSwitch=Date.now(), toastTimer, chromeTimer, confirmCallback=null, lastDate='', loading=false;
+try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const parsed=JSON.parse(raw);if(Array.isArray(parsed.boards)){db.boards=parsed.boards.slice(0,LIMITS.boards).map(b=>validateBoard(seed.bundleId?b:refreshFactoryExample(b),true));db.activeId=text(parsed.activeId,100);}}}catch(e){storageOK=false;}
+if(!db.boards.length){let initial;try{initial=seed.board?validateBoard(seed.board):createBoard();}catch(e){initial=createBoard();}db.boards=[initial];db.activeId=initial.id;}
+if(!db.boards.some(b=>b.id===db.activeId))db.activeId=db.boards[0].id;
+let board=db.boards.find(b=>b.id===db.activeId);
+function toast(message){clearTimeout(toastTimer);$('toast').textContent=message;$('toast').classList.add('show');toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3500);}
+function markStorage(){ $('saveStatus').textContent=storageOK?'이 브라우저에 저장됨':'자동 저장 불가 · 파일로 백업하세요';$('saveStatus').classList.toggle('failed',!storageOK);}
+function persist(){clearTimeout(saveTimer);try{localStorage.setItem(STORAGE_KEY,JSON.stringify(db));storageOK=true;}catch(e){storageOK=false;}markStorage();}
+function queueSave(){if(loading)return;$('saveStatus').textContent='저장 중…';clearTimeout(saveTimer);saveTimer=setTimeout(persist,250);}
+const timeFmt=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});
+const weekdayFmt=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',weekday:'long'});
+function koreanParts(){const now=new Date();const p={};for(const t of timeFmt.formatToParts(now))if(t.type!=='literal')p[t.type]=t.value;return {...p,weekday:weekdayFmt.format(now),key:p.year+'-'+p.month+'-'+p.day};}
+function today(){return koreanParts().key;}
+function isEligible(m,date=today()){return m.enabled&&m.text.trim()&&(!m.expiry||m.expiry>=date);}
+function eligible(){const d=today();return board.messages.filter(m=>isEligible(m,d));}
+function selected(){return board.messages.find(m=>m.id===editorId);}
+function renderBoards(){const sel=$('boardSelect');sel.replaceChildren();for(const b of db.boards){const o=document.createElement('option');o.value=b.id;o.textContent=b.name;sel.append(o);}sel.value=board.id;}
+function renderList(){const list=$('messageList');list.replaceChildren();const date=today();board.messages.forEach((m,i)=>{const b=document.createElement('button');b.className='msg-item'+(m.id===editorId?' selected':'')+(!isEligible(m,date)?' inactive':'');b.type='button';b.dataset.id=m.id;b.setAttribute('aria-pressed',String(m.id===editorId));const number=document.createElement('span');number.className='msg-num';number.textContent=String(i+1).padStart(2,'0');const c=document.createElement('span');c.className='msg-content';const strong=document.createElement('strong');strong.textContent=m.text.trim().split('\n')[0]||'새 메시지';const small=document.createElement('small');small.textContent=!m.enabled?'표시 꺼짐':m.expiry&&m.expiry<date?'게시 종료':!m.text.trim()?'문구를 입력해 주세요':m.title||'메시지';c.append(strong,small);b.append(number,c);if(m.id===shownId&&isEligible(m,date)){const dot=document.createElement('span');dot.className='live-dot';dot.title='현재 화면에 표시 중';b.append(dot);}b.addEventListener('click',()=>{editorId=m.id;if(isEligible(m)){shownId=m.id;lastSwitch=Date.now();}renderEditor();renderStage();});list.append(b);});if(!board.messages.length){const p=document.createElement('p');p.className='empty-list';p.textContent='새 메시지를 추가해 주세요.';list.append(p);}$('messageCount').textContent=board.messages.length+'개';$('addMessageBtn').disabled=board.messages.length>=LIMITS.messages;}
+function renderEditor(){const m=selected();$('messageEditor').hidden=!m;if(m){$('messageTitle').value=m.title;$('messageText').value=m.text;$('messageExpiry').value=m.expiry;$('messageEnabled').checked=m.enabled;const i=board.messages.indexOf(m);$('moveUpBtn').disabled=i===0;$('moveDownBtn').disabled=i===board.messages.length-1;updateEditorHints();}renderList();}
+function updateEditorHints(){const m=selected();if(!m)return;$('charCount').textContent=m.text.length+' / '+LIMITS.chars;const expired=m.expiry&&m.expiry<today();$('expiryHint').hidden=!expired;$('expiryHint').textContent=expired?'게시 종료일이 지나 화면에는 나오지 않아요. 날짜를 바꾸거나 비워 주세요.':'';}
+function setTab(name){document.querySelectorAll('.tab').forEach(x=>{const on=x.dataset.tab===name;x.setAttribute('aria-selected',String(on));x.tabIndex=on?0:-1;});document.querySelectorAll('.tabpane').forEach(p=>p.hidden=p.id!=='pane-'+name);}
+function renderSettings(){loading=true;document.querySelectorAll('.point-btn').forEach(b=>{const on=b.dataset.point===board.pointStyle;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});$('boardName').value=board.name;$('brandName').value=board.brand;$('tagline').value=board.tagline;$('notice').value=board.notice;$('clockNote').value=board.clockNote;$('noticeExpiry').value=board.noticeExpiry;$('clockFormat').value=board.clockFormat;$('showSeconds').value=String(board.showSeconds);$('fontScale').value=board.fontScale;$('fontSizeValue').textContent=board.fontScale+'%';$('messageAlign').value=board.align;$('graphicClock').checked=board.graphicClock;$('colorEmphasis').checked=board.colorEmphasis;$('autoRotate').checked=board.autoRotate;$('rotateSeconds').value=board.rotateSeconds;document.querySelectorAll('.seg').forEach(b=>{b.classList.toggle('active',b.dataset.mode===board.mode);b.setAttribute('aria-pressed',String(b.dataset.mode===board.mode));});document.querySelectorAll('.theme-btn').forEach(b=>{b.classList.toggle('active',b.dataset.theme===board.theme);b.setAttribute('aria-pressed',String(b.dataset.theme===board.theme));});document.querySelectorAll('.mood-dot').forEach(b=>{b.classList.toggle('active',b.dataset.palette===board.theme);b.setAttribute('aria-pressed',String(b.dataset.palette===board.theme));});loading=false;}
+function resizeStage(){const box=$('previewShell').getBoundingClientRect();const scale=Math.min(box.width/1440,box.height/810);$('stage').style.transform='translate(-50%,-50%) scale('+scale+')';}
+function fitNotice(){const el=$('stageNotice');let size=23;el.style.fontSize=size+'px';while(size>12&&el.scrollWidth>el.clientWidth+1){el.style.fontSize=(--size)+'px';}}
+function fitText(){
+ fitNotice();
+ if(board.mode==='clock')return;
+ const el=$('stageMessage'),box=$('messageFit'),block=$('messageBlock');
+ const style=getComputedStyle(block);
+ const labelHeight=parseFloat(style.getPropertyValue('--message-label-height'))||28;
+ const gap=parseFloat(style.rowGap)||24;
+ const maxHeight=Math.max(24,block.clientHeight-labelHeight-gap-
+   (parseFloat(style.paddingTop)||0)-(parseFloat(style.paddingBottom)||0));
+ const target=(board.mode==='message'?112:88)*board.fontScale/100;
+ let size=Math.round(target);
+ el.style.fontSize=size+'px';
+ while(size>16&&(el.scrollHeight>maxHeight||el.scrollWidth>box.clientWidth+1)){
+  el.style.fontSize=(--size)+'px';
+ }
+ box.style.height=Math.min(el.scrollHeight,maxHeight)+'px';
+ const selectedVisible=selected()&&selected().id===shownId;
+ $('textFitHint').textContent=selectedVisible&&size<target-2?
+  '화면에 맞게 글자를 자동으로 줄였어요. 문장을 짧게 나누면 더 크게 보여요.':
+  '2~4줄 권장 · 줄바꿈은 8줄까지 지원합니다.';
+}
+function renderClock(){const p=koreanParts();const hour=Number(p.hour);const h=board.clockFormat==='12'?String(hour%12||12):p.hour;$('clockTime').textContent=h+':'+p.minute;$('clockTime').setAttribute('datetime',p.key+'T'+p.hour+':'+p.minute+':'+p.second+'+09:00');$('clockSeconds').textContent=p.second;$('clockSeconds').hidden=!board.showSeconds;$('clockBlock').classList.toggle('seconds-on',board.showSeconds);$('clockPeriod').textContent=hour<12?'오전':'오후';$('clockPeriod').hidden=board.clockFormat==='24';$('stageDay').textContent=p.weekday;$('stageDate').textContent=Number(p.month)+'월 '+Number(p.day)+'일';
+ const minute=Number(p.minute), second=Number(p.second);
+ // No continuous second-hand movement unless the teacher opts into seconds.
+ const visibleMinute=minute+(board.showSeconds?second/60:0);
+ $('hourHand').setAttribute('transform','rotate('+((hour%12)*30+visibleMinute/2)+' 100 100)');
+ $('minuteHand').setAttribute('transform','rotate('+(visibleMinute*6)+' 100 100)');
+ $('secondHand').setAttribute('transform','rotate('+(second*6)+' 100 100)');
+ $('secondHand').toggleAttribute('hidden',!board.showSeconds);
+ return p.key;}
+function renderMessageText(value){
+ const el=$('stageMessage'),lines=value.split('\n');el.replaceChildren();
+ lines.forEach((line,i)=>{if(i)el.append(document.createTextNode('\n'));const span=document.createElement('span');span.textContent=line;if(i===lines.length-1&&lines.length>1&&line.trim())span.className='message-emphasis';el.append(span);});
+}
+function renderStage(){const s=$('stage');s.dataset.theme=board.theme;s.dataset.mode=board.mode;s.dataset.emphasis=String(board.colorEmphasis);s.dataset.point=board.pointStyle;document.querySelectorAll('.live-point use').forEach(el=>el.setAttribute('href','#ww-point-'+(board.pointStyle==='heart'?'heart':'clover')));$('analogClock').toggleAttribute('hidden',!board.graphicClock);$('clockBlock').classList.toggle('has-note',!!board.clockNote.trim());$('previewShell').style.backgroundColor={forest:'#ffffff',night:'#1c2330',paper:'#ffffff'}[board.theme];$('stageBrand').textContent=board.brand;$('stageTagline').textContent=board.tagline;$('stageTagline').hidden=!board.tagline.trim();$('clockSubline').textContent=board.clockNote;$('clockSubline').hidden=!board.clockNote.trim();$('messageBlock').classList.toggle('center',board.align==='center');let active=eligible();let m=active.find(x=>x.id===shownId);if(!m){m=active[0];shownId=m?m.id:'';lastSwitch=Date.now();}$('stageCategory').textContent=m?m.title:'';$('stageCategory').hidden=!m||!m.title.trim();renderMessageText(m?m.text:'');const showNotice=board.notice.trim()&&(!board.noticeExpiry||board.noticeExpiry>=today());$('stageNoticeWrap').style.visibility=showNotice?'visible':'hidden';$('stageNotice').textContent=showNotice?board.notice:'';const pages=$('stagePages');pages.replaceChildren();const index=active.findIndex(x=>x.id===shownId);if(active.length>1){for(let i=0;i<Math.min(active.length,6);i++){const dot=document.createElement('span');dot.className='page-mark'+(i===index%6?' active':'');pages.append(dot);}const c=document.createElement('b');c.textContent=String(index+1).padStart(2,'0')+' / '+String(active.length).padStart(2,'0');pages.append(c);}pages.setAttribute('aria-label',active.length?'메시지 '+(index+1)+' / '+active.length:'표시할 메시지 없음');$('previewHint').textContent=({both:'시계 + 메시지',clock:'큰 시계',message:'큰 메시지'}[board.mode])+(active.length?' · '+active.length+'개 메시지':' · 표시할 메시지 없음');renderClock();renderRotation();renderList();resizeStage();fitText();requestAnimationFrame(fitText);}
+function renderRotation(){const n=eligible().length;const running=board.autoRotate&&!paused&&n>1&&board.mode!=='clock';$('rotationState').textContent=board.mode==='clock'?'시계 모드':n<2?'메시지 고정':!board.autoRotate?'자동 넘김 꺼짐':paused?'일시정지':board.rotateSeconds+'초마다 전환';$('pauseBtn').setAttribute('aria-label',running?'자동 넘김 일시정지':'자동 넘김 재생');$('pauseBtn').innerHTML=running?'<svg viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg>':'<svg viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></svg>';$('displayPause').textContent=running?'일시정지':'자동 넘김';for(const id of ['prevMessageBtn','nextMessageBtn','displayPrev','displayNext','pauseBtn','displayPause'])$(id).disabled=n<2||board.mode==='clock';}
+function advance(delta){const active=eligible();if(!active.length||board.mode==='clock')return;const i=active.findIndex(m=>m.id===shownId);shownId=active[(i+delta+active.length)%active.length].id;lastSwitch=Date.now();renderStage();}
+function toggleRotation(){if(eligible().length<2||board.mode==='clock')return;if(!board.autoRotate){board.autoRotate=true;paused=false;$('autoRotate').checked=true;queueSave();}else paused=!paused;lastSwitch=Date.now();renderRotation();}
+function loadBoard(id){persist();const next=db.boards.find(b=>b.id===id);if(!next)return;board=next;db.activeId=id;editorId=board.messages[0]?.id||'';shownId='';paused=false;lastSwitch=Date.now();renderBoards();renderSettings();renderEditor();renderStage();persist();}
+function createNamed(duplicate=false){if(db.boards.length>=LIMITS.boards){toast('전광판은 최대 30개까지 저장할 수 있어요.');return;}$('nameTitle').textContent=duplicate?'전광판 복사하기':'새 전광판 만들기';$('newBoardName').value=duplicate?(board.name+' 복사').slice(0,32):'';$('nameDialog').dataset.duplicate=String(duplicate);$('nameDialog').showModal();$('newBoardName').focus();}
+function confirmAction(title,message,callback,acceptLabel='확인'){confirmCallback=callback;$('confirmTitle').textContent=title;$('confirmText').textContent=message;$('acceptConfirm').textContent=acceptLabel;$('confirmDialog').showModal();}
+function addMessage(template){if(board.messages.length>=LIMITS.messages){toast('메시지는 전광판 하나에 최대 24개까지 넣을 수 있어요.');return;}const m={id:uid(),title:template?.title||'오늘의 메시지',text:template?.text||'',enabled:true,expiry:''};board.messages.push(m);editorId=m.id;if(m.text)shownId=m.id;lastSwitch=Date.now();setTab('messages');renderEditor();renderStage();queueSave();if(!template)$('messageText').focus();else toast('내 메시지에 추가했어요. 자유롭게 고쳐 쓰세요.');}
+function renderTemplates(filter='all'){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.filter===filter));const grid=$('templateGrid');grid.replaceChildren();TEMPLATES.filter(t=>filter==='all'||t.kind===filter).slice(0,filter==='all'?6:24).forEach(t=>{const b=document.createElement('button');b.className='template-card';const label=document.createElement('span');label.className='caps';label.textContent=labelKind[t.kind];const p=document.createElement('p');p.textContent=t.text.replace(/\n/g,' ');const plus=document.createElement('span');plus.className='plus';plus.textContent='+';plus.setAttribute('aria-hidden','true');b.append(label,p,plus);b.addEventListener('click',()=>addMessage(t));grid.append(b);});}
+function downloadFile(name,content,type){const blob=new Blob([content],{type});const a=document.createElement('a');const url=URL.createObjectURL(blob);a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),15000);}
+function exportJSON(){persist();downloadFile('classroom-board-settings.json',JSON.stringify({schema:'warmwise-classroom-board',version:1,board},null,2),'application/json;charset=utf-8');toast('설정 파일을 저장했어요.');}
+function exportHTML(){persist();const doc=new DOMParser().parseFromString(ORIGINAL_DOCUMENT,'text/html');const data={bundleId:uid(),board};doc.getElementById('starter-data').textContent=JSON.stringify(data).replace(/</g,'\\u003c');downloadFile('classroom-board-v7.html','<!doctype html>\n'+doc.documentElement.outerHTML,'text/html;charset=utf-8');toast('현재 전광판을 담은 HTML 파일을 저장했어요.');}
+function pack(value){const bytes=new TextEncoder().encode(JSON.stringify(value));let bin='';for(const b of bytes)bin+=String.fromCharCode(b);return btoa(bin).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+function unpack(value){if(value.length>LIMITS.hash)throw Error('공유 링크가 너무 길어요. 설정 파일로 가져와 주세요.');let s=value.replace(/-/g,'+').replace(/_/g,'/');s+='='.repeat((4-s.length%4)%4);const bin=atob(s);const bytes=Uint8Array.from(bin,c=>c.charCodeAt(0));return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));}
+function webContext(){return ['http:','https:'].includes(location.protocol);}
+function baseURL(){return location.origin+location.pathname;}
+async function copyString(s){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(s);toast('복사했어요.');return;}throw Error();}catch(e){const temp=document.createElement('textarea');temp.value=s;temp.style.position='fixed';temp.style.opacity='0';const parent=$('shareDialog').open?$('shareDialog'):document.body;parent.append(temp);temp.select();let ok=false;try{ok=document.execCommand('copy');}catch(e){}temp.remove();if(ok)toast('복사했어요.');else{$('shareUrl').value=s;$('shareUrl').focus();$('shareUrl').select();toast('자동 복사가 막혔어요. 선택된 주소를 직접 복사해 주세요.');}}}
+function openShare(){persist();const online=webContext();$('localShareNote').hidden=online;$('linkShareSection').hidden=!online;if(online){$('shareUrl').value=baseURL()+'#board='+pack({version:1,board});}$('shareDialog').showModal();}
+function importAsNew(incoming){if(db.boards.length>=LIMITS.boards){toast('전광판이 30개예요. 사용하지 않는 전광판을 지운 뒤 가져와 주세요.');return;}let b=validateBoard(incoming);const name=b.name;if(db.boards.some(x=>x.name===name))b.name=(name.slice(0,25)+' · 가져옴').slice(0,32);db.boards.push(b);loadBoard(b.id);setTab('messages');toast('새 전광판으로 가져왔어요. 기존 설정은 그대로예요.');}
+async function handleImport(file){if(!file)return;try{if(file.size>LIMITS.importBytes)throw Error('파일이 너무 커요. 이 전광판에서 저장한 설정 파일을 선택해 주세요.');const data=JSON.parse(await file.text());if(data.schema!=='warmwise-classroom-board'||data.version!==1)throw Error('지원하지 않는 파일이에요. 이 전광판에서 저장한 JSON 파일을 선택해 주세요.');const clean=validateBoard(data.board);if($('shareDialog').open)$('shareDialog').close();confirmAction('설정 가져오기','“'+clean.name+'”을 새 전광판으로 추가할까요? 현재 설정은 덮어쓰지 않아요.',()=>importAsNew(clean),'가져오기');}catch(e){toast(e.message||'설정 파일을 읽지 못했어요.');}finally{$('importFile').value='';}}
+function consumeHash(){if(!location.hash.startsWith('#board='))return;try{const incoming=unpack(location.hash.slice(7));if(incoming.version!==1)throw Error('지원하지 않는 공유 링크예요.');const clean=validateBoard(incoming.board);confirmAction('공유받은 전광판','“'+clean.name+'”을 내 전광판으로 가져올까요? 독립된 복사본으로 추가돼요. 보낸 사람의 화면에는 영향을 주지 않아요.',()=>importAsNew(clean),'가져오기');}catch(e){toast(e.message||'공유 링크를 읽지 못했어요.');}try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}}
+function showChrome(){if(!presenting)return;document.body.classList.add('chrome-visible');clearTimeout(chromeTimer);chromeTimer=setTimeout(()=>{if(!$('displayToolbar').matches(':hover')&&!$('displayToolbar').contains(document.activeElement))document.body.classList.remove('chrome-visible');},3200);}
+let wakeLock=null;
+async function acquireWakeLock(){try{if(presenting&&'wakeLock' in navigator)wakeLock=await navigator.wakeLock.request('screen');}catch(e){/* Device policies can reject wake lock; full-screen view still works. */}}
+async function startPresentation(){persist();presenting=true;document.body.classList.add('presenting');document.activeElement?.blur();resizeStage();showChrome();requestAnimationFrame(()=>{resizeStage();fitText();});try{const el=document.documentElement;if(el.requestFullscreen){await el.requestFullscreen();fullscreenAcquired=true;}else if(el.webkitRequestFullscreen){el.webkitRequestFullscreen();fullscreenAcquired=true;}else toast('화면 보기로 전환했어요. 이 브라우저에서는 전체화면이 제한될 수 있어요.');}catch(e){toast('화면 보기로 전환했어요. 브라우저가 전체화면 요청은 허용하지 않았어요.');}await acquireWakeLock();}
+async function stopPresentation(exitFull=true){presenting=false;document.body.classList.remove('presenting','chrome-visible');clearTimeout(chromeTimer);if(wakeLock){try{await wakeLock.release();}catch(e){}wakeLock=null;}if(exitFull&&(document.fullscreenElement||document.webkitFullscreenElement)){try{if(document.exitFullscreen)await document.exitFullscreen();else document.webkitExitFullscreen?.();}catch(e){}}fullscreenAcquired=false;resizeStage();requestAnimationFrame(resizeStage);}
+// Editor events. User-authored content is always rendered through textContent/value.
+document.querySelectorAll('.tab').forEach(t=>{t.addEventListener('click',()=>setTab(t.dataset.tab));t.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();const a=[...document.querySelectorAll('.tab')],i=a.indexOf(t),next=a[(i+(e.key==='ArrowRight'?1:-1)+a.length)%a.length];setTab(next.dataset.tab);next.focus();});});
+$('boardSelect').addEventListener('change',e=>loadBoard(e.target.value));$('newBoardBtn').addEventListener('click',()=>createNamed());$('duplicateBoardBtn').addEventListener('click',()=>createNamed(true));
+$('confirmNewBoard').addEventListener('click',()=>{const name=$('newBoardName').value.trim()||'새 전광판';const b=$('nameDialog').dataset.duplicate==='true'?validateBoard(board):createBoard();b.name=name;db.boards.push(b);$('nameDialog').close();loadBoard(b.id);toast('새 전광판을 만들었어요.');});$('newBoardName').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing){e.preventDefault();$('confirmNewBoard').click();}});
+$('deleteBoardBtn').addEventListener('click',()=>{const id=board.id;confirmAction('전광판 삭제','“'+board.name+'”을 삭제할까요? 이 브라우저의 해당 설정이 삭제돼요. 백업 파일이 없으면 되돌릴 수 없어요.',()=>{db.boards=db.boards.filter(b=>b.id!==id);if(!db.boards.length)db.boards.push(createBoard());loadBoard(db.boards[0].id);toast('전광판을 삭제했어요.');},'삭제');});
+$('addMessageBtn').addEventListener('click',()=>addMessage());$('deleteMessageBtn').addEventListener('click',()=>{const m=selected();if(!m)return;confirmAction('메시지 삭제','선택한 메시지를 삭제할까요?',()=>{board.messages=board.messages.filter(x=>x.id!==m.id);editorId=board.messages[0]?.id||'';renderEditor();renderStage();queueSave();},'삭제');});
+for(const [id,delta] of [['moveUpBtn',-1],['moveDownBtn',1]])$(id).addEventListener('click',()=>{const i=board.messages.findIndex(m=>m.id===editorId),j=i+delta;if(i<0||j<0||j>=board.messages.length)return;[board.messages[i],board.messages[j]]=[board.messages[j],board.messages[i]];renderEditor();renderStage();queueSave();});
+for(const [id,key,event] of [['messageTitle','title','input'],['messageText','text','input'],['messageExpiry','expiry','change'],['messageEnabled','enabled','change']])$(id).addEventListener(event,e=>{const m=selected();if(!m)return;m[key]=key==='enabled'?e.target.checked:key==='expiry'?dateField(e.target.value):key==='text'?messageValue(e.target.value):e.target.value;if(key==='text'&&e.target.value!==m.text){e.target.value=m.text;toast('줄바꿈은 8줄까지 반영돼요. 나머지는 이어서 표시했어요.');}if(isEligible(m))shownId=m.id;lastSwitch=Date.now();updateEditorHints();renderStage();queueSave();});
+for(const [id,key] of [['brandName','brand'],['tagline','tagline'],['notice','notice'],['clockNote','clockNote'],['boardName','name']])$(id).addEventListener('input',e=>{board[key]=e.target.value;if(key==='name'){board.name=board.name||'이름 없는 전광판';renderBoards();}renderStage();queueSave();});
+for(const [id,key] of [['graphicClock','graphicClock'],['colorEmphasis','colorEmphasis']])$(id).addEventListener('change',e=>{board[key]=e.target.checked;renderStage();queueSave();});
+$('noticeExpiry').addEventListener('change',e=>{board.noticeExpiry=dateField(e.target.value);renderStage();queueSave();});
+$('fontScale').addEventListener('input',e=>{board.fontScale=bounded(e.target.value,75,135,100);$('fontSizeValue').textContent=board.fontScale+'%';fitText();queueSave();});
+for(const [id,key] of [['messageAlign','align'],['clockFormat','clockFormat'],['showSeconds','showSeconds']])$(id).addEventListener('change',e=>{board[key]=key==='showSeconds'?e.target.value==='true':e.target.value;renderStage();queueSave();});
+$('autoRotate').addEventListener('change',e=>{board.autoRotate=e.target.checked;paused=false;lastSwitch=Date.now();renderRotation();queueSave();});$('rotateSeconds').addEventListener('change',e=>{board.rotateSeconds=Math.round(bounded(e.target.value,10,600,45));e.target.value=board.rotateSeconds;lastSwitch=Date.now();renderRotation();queueSave();});
+document.querySelectorAll('.point-btn').forEach(b=>b.addEventListener('click',()=>{board.pointStyle=b.dataset.point;renderSettings();renderStage();queueSave();}));
+document.querySelectorAll('.seg').forEach(b=>b.addEventListener('click',()=>{board.mode=b.dataset.mode;lastSwitch=Date.now();renderSettings();renderStage();queueSave();}));document.querySelectorAll('.theme-btn').forEach(b=>b.addEventListener('click',()=>{board.theme=b.dataset.theme;renderSettings();renderStage();queueSave();}));document.querySelectorAll('.mood-dot').forEach(b=>b.addEventListener('click',()=>{board.theme=b.dataset.palette;renderSettings();renderStage();queueSave();}));document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',()=>renderTemplates(b.dataset.filter)));
+for(const id of ['prevMessageBtn','displayPrev'])$(id).addEventListener('click',()=>advance(-1));for(const id of ['nextMessageBtn','displayNext'])$(id).addEventListener('click',()=>advance(1));for(const id of ['pauseBtn','displayPause'])$(id).addEventListener('click',toggleRotation);
+$('shareBtn').addEventListener('click',openShare);$('exportHtmlBtn').addEventListener('click',exportHTML);for(const id of ['backupBtn','exportJsonBtn'])$(id).addEventListener('click',exportJSON);for(const id of ['importBtn','importJsonBtn'])$(id).addEventListener('click',()=>$('importFile').click());$('importFile').addEventListener('change',e=>handleImport(e.target.files[0]));$('copyShareBtn').addEventListener('click',()=>copyString($('shareUrl').value));$('copyBaseBtn').addEventListener('click',()=>copyString(baseURL()));
+for(const b of document.querySelectorAll('[data-close]'))b.addEventListener('click',()=>$(b.dataset.close).close());$('cancelConfirm').addEventListener('click',()=>{$('confirmDialog').close();confirmCallback=null;});$('acceptConfirm').addEventListener('click',()=>{const action=confirmCallback;confirmCallback=null;$('confirmDialog').close();if(action)action();});
+$('presentBtn').addEventListener('click',startPresentation);$('exitDisplay').addEventListener('click',()=>stopPresentation());$('previewShell').addEventListener('pointermove',showChrome);$('previewShell').addEventListener('pointerdown',showChrome);$('displayToolbar').addEventListener('pointerleave',showChrome);
+function fullscreenChanged(){const active=document.fullscreenElement||document.webkitFullscreenElement;if(!active&&presenting&&fullscreenAcquired)stopPresentation(false);resizeStage();}document.addEventListener('fullscreenchange',fullscreenChanged);document.addEventListener('webkitfullscreenchange',fullscreenChanged);
+document.addEventListener('keydown',e=>{if(e.isComposing||e.ctrlKey||e.altKey||e.metaKey||document.querySelector('dialog[open]')||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||e.target.isContentEditable)return;if(e.key==='Escape'&&presenting){e.preventDefault();stopPresentation();}else if(e.key.toLowerCase()==='f'){e.preventDefault();presenting?stopPresentation():startPresentation();}else if(presenting&&e.key.toLowerCase()==='e'){e.preventDefault();stopPresentation();}else if(e.key==='ArrowRight'){e.preventDefault();advance(1);}else if(e.key==='ArrowLeft'){e.preventDefault();advance(-1);}else if(presenting&&e.code==='Space'){e.preventDefault();toggleRotation();}if(presenting)showChrome();});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{resizeStage();fitText();});
+window.addEventListener('resize',resizeStage);if('ResizeObserver'in window)new ResizeObserver(resizeStage).observe($('previewShell'));window.addEventListener('pagehide',persist);document.addEventListener('visibilitychange',()=>{if(document.hidden)persist();else{renderStage();if(presenting)acquireWakeLock();}});window.addEventListener('hashchange',consumeHash);
+// One clock tick; rotation uses elapsed wall-clock time, not decrementing counters.
+setInterval(()=>{const date=renderClock();if(date!==lastDate){lastDate=date;renderStage();updateEditorHints();}if(board.autoRotate&&!paused&&board.mode!=='clock'&&!document.hidden&&!document.querySelector('dialog[open]')&&eligible().length>1&&Date.now()-lastSwitch>=board.rotateSeconds*1000)advance(1);},1000);
+editorId=board.messages[0]?.id||'';renderBoards();renderSettings();renderEditor();renderTemplates();renderStage();persist();consumeHash();
 </script>
 </body>
 </html>
