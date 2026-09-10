@@ -1,0 +1,46 @@
+name: Verify classroom board
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'board/app-v7.b64'
+      - '.github/workflows/prepare-classroom-board.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode and inspect classroom board
+        run: |
+          python3 - <<'PY'
+          import base64, gzip, hashlib, pathlib, re, json, subprocess
+          source = pathlib.Path('board/app-v7.b64').read_text().strip()
+          raw = gzip.decompress(base64.b64decode(source, validate=True))
+          html = raw.decode('utf-8')
+          required = ['교실 보드', 'starter-data', 'presentBtn', 'shareBtn', 'localStorage', 'warmwise.classroom.v2', '클로버', '하트', 'exportHTML']
+          for word in required:
+              assert word in html, 'Missing expected component: '+word
+          assert not re.search(r'<script[^>]*\bsrc\s*=', html, re.I), 'Unexpected remote script'
+          assert html.rstrip().endswith('</html>'), 'Incomplete document'
+          pathlib.Path('board/index.html').write_bytes(raw)
+          for i, (attrs, script) in enumerate(re.findall(r'<script([^>]*)>([\s\S]*?)</script>', html, re.I)):
+              if 'application/json' in attrs:
+                  json.loads(script)
+              else:
+                  f=pathlib.Path('/tmp')/('board-check-'+str(i)+'.js')
+                  f.write_text(script)
+                  subprocess.run(['node','--check',str(f)],check=True)
+          print('Decoded bytes:', len(raw))
+          print('SHA256:', hashlib.sha256(raw).hexdigest())
+          print('Title:', re.search(r'<title>(.*?)</title>',html).group(1))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: classroom-board-source
+          path: |
+            board/index.html
+            board/app-v7.b64
+          retention-days: 1
