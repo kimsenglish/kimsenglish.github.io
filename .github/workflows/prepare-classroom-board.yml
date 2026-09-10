@@ -1,51 +1,55 @@
-name: Verify classroom board
+name: Publish verified classroom board
 on:
   push:
     branches: [main]
     paths:
-      - 'board/app-v7.b64'
       - '.github/workflows/prepare-classroom-board.yml'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
-  verify:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Decode and inspect classroom board
+      - name: Restore and verify exact approved v7 source
         run: |
           python3 - <<'PY'
-          import base64, gzip, hashlib, pathlib, re, json, subprocess, traceback
-          report=[]
-          try:
-              source=pathlib.Path('board/app-v7.b64').read_text().strip()
-              report.append('Base64 length: '+str(len(source)))
-              raw=gzip.decompress(base64.b64decode(source,validate=True))
-              html=raw.decode('utf-8')
-              pathlib.Path('board/index.html').write_bytes(raw)
-              report.append('Decoded bytes: '+str(len(raw)))
-              report.append('SHA256: '+hashlib.sha256(raw).hexdigest())
-              report.append('Title: '+str(re.findall(r'<title>(.*?)</title>',html)))
-              required=['교실 보드','starter-data','presentBtn','shareBtn','localStorage','warmwise.classroom.v2','클로버','하트','exportHTML']
-              for word in required:
-                  report.append(word+': '+str(word in html))
-              for i,(attrs,script) in enumerate(re.findall(r'<script([^>]*)>([\s\S]*?)</script>',html,re.I)):
-                  if 'application/json' in attrs:
-                      json.loads(script)
-                  else:
-                      f=pathlib.Path('/tmp')/('board-check-'+str(i)+'.js')
-                      f.write_text(script)
-                      result=subprocess.run(['node','--check',str(f)],capture_output=True,text=True)
-                      report.append('JavaScript '+str(i)+': '+str(result.returncode)+' '+result.stderr)
-          except Exception:
-              report.append(traceback.format_exc())
-          pathlib.Path('board/verification.txt').write_text('\n'.join(report))
-          print('\n'.join(report))
+          import base64, hashlib, json, lzma, pathlib, re, subprocess, zlib
+          folder=pathlib.Path('board')
+          prefix=zlib.decompressobj(31).decompress(base64.b64decode((folder/'app-v7.b64').read_text(),validate=True))
+          suffix=''.join((folder/f'transfer-{i}.b64').read_text().strip() for i in range(1,5))
+          raw=prefix+lzma.decompress(base64.b64decode(suffix,validate=True))
+          assert len(raw)==119515, 'Source length mismatch'
+          digest=hashlib.sha256(raw).hexdigest()
+          assert digest=='7f9e55151546216ada0545e2d8494e31aecb048171e5249a11e0fc566ace8ff9', 'Original source mismatch'
+          html=raw.decode('utf-8')
+          assert html.rstrip().endswith('</html>')
+          for word in ['교실 보드','presentBtn','shareBtn','warmwise.classroom.v2','클로버','하트','exportHTML']:
+              assert word in html, 'Missing component: '+word
+          for i,(attrs,script) in enumerate(re.findall(r'<script([^>]*)>([\s\S]*?)</script>',html,re.I)):
+              if 'application/json' in attrs:
+                  json.loads(script)
+              else:
+                  f=pathlib.Path('/tmp')/f'board-check-{i}.js'
+                  f.write_text(script)
+                  subprocess.run(['node','--check',str(f)],check=True)
+          (folder/'index.html').write_bytes(raw)
+          pathlib.Path('/tmp/board-verification.txt').write_text('Approved original bytes: '+str(len(raw))+'\nSHA256: '+digest+'\nHTML and JavaScript syntax validation passed.\n')
+          print(pathlib.Path('/tmp/board-verification.txt').read_text())
           PY
+      - name: Commit approved HTML without changing existing homepage
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add board/index.html
+          git diff --cached --quiet || git commit -m 'Serve approved classroom board v7 directly as HTML'
+          git push origin HEAD:main
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: classroom-board-source
-          path: board/
+          name: classroom-board-verified
+          path: |
+            board/index.html
+            /tmp/board-verification.txt
           retention-days: 1
