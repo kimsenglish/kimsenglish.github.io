@@ -1,0 +1,124 @@
+name: Publish classroom defaults 20260915
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-classroom-defaults-20260915.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply exact shared settings and test storage preservation
+        run: |
+          python3 - <<'PY'
+          import copy,hashlib,http.server,json,pathlib,re,shutil,subprocess,tempfile,threading
+          source=pathlib.Path('board/index.html')
+          original=source.read_text(encoding='utf-8')
+          assert hashlib.sha256(source.read_bytes()).hexdigest()=='e1732b6b59e18c5fa9355d300f7bd58a3f6677fd648f4284b052b2169933a517', 'Source changed; inspect before applying defaults'
+          published={"id":"4b648cae-77d4-45d2-b671-864e81649650","name":"나의 전광판 · 가져옴","brand":"김가영어학원","tagline":"","theme":"paper","pointStyle":"heart","graphicClock":True,"colorEmphasis":True,"clockNote":"","fixedMemo":"","fixedMemoTitle":"메모","fixedMemoEnabled":True,"memoFontScale":110,"mode":"both","align":"left","fontScale":100,"clockFormat":"24","showSeconds":False,"notice":"오늘 문법책 제출하고 가세요","noticeExpiry":"","autoRotate":True,"rotateSeconds":45,"messages":[{"id":"31315928-36e2-472a-b938-0faa26fb09d1","title":"오늘의 메모","text":"오늘도 즐겁게💕\n힘들어도 괴롭진 않도록!","enabled":True,"expiry":""},{"id":"271ab48f-21b9-4d9a-958a-67d25328925c","title":"공부 방법","text":"맞았는지 틀렸는지만 생각하지말고,\n내가 정말 아는지 생각해봅시다","enabled":True,"expiry":""},{"id":"3ecce429-678b-4990-9eb7-44389780b593","title":"질문하기","text":"충분히 생각해도 막히면\n도움을 요청하세요🫶🏻","enabled":True,"expiry":""}]}
+          revision='kayoung-20260915-default-1'
+          seed={"publishedRevision":revision,"board":published}
+          def dump(value):
+              return json.dumps(value,ensure_ascii=False,separators=(',',':')).replace('<','\\u003c')
+          def replace_once(text,old,new):
+              assert text.count(old)==1, 'Patch anchor missing or ambiguous: '+old[:100]
+              return text.replace(old,new,1)
+          html=replace_once(original,'<script id="starter-data" type="application/json">{}</script>','<script id="starter-data" type="application/json">'+dump(seed)+'</script>')
+          html=replace_once(html,'db.activeId=text(parsed.activeId,100);','db.activeId=text(parsed.activeId,100);db.publishedDefaultRevision=text(parsed.publishedDefaultRevision,80);')
+          migration="""// A published default is adopted once, without deleting any saved teacher board.
+          // Later local edits survive reloads; standalone exports keep their own settings.
+          const publishedRevision = text(seed.publishedRevision,80);
+          if(!seed.bundleId && seed.board && publishedRevision && db.publishedDefaultRevision!==publishedRevision){
+           const incoming=validateBoard(seed.board);
+           const comparable=value=>JSON.stringify(value,(key,item)=>(key==='id'||key==='name')?undefined:item);
+           const existing=db.boards.find(item=>comparable(item)===comparable(incoming));
+           if(existing){db.activeId=existing.id;}
+           else if(db.boards.length<LIMITS.boards){db.boards.push(incoming);db.activeId=incoming.id;}
+           db.publishedDefaultRevision=publishedRevision;
+          }
+          """
+          marker='if(!db.boards.some(b=>b.id===db.activeId))db.activeId=db.boards[0].id;'
+          html=replace_once(html,marker,migration+marker)
+          out=pathlib.Path('/tmp/classroom-defaults');out.mkdir(exist_ok=True)
+          for i,(attrs,body) in enumerate(re.findall(r'<script([^>]*)>([\s\S]*?)</script>',html,re.I)):
+              if 'application/json' in attrs:
+                  json.loads(body)
+              else:
+                  f=out/('script-'+str(i)+'.js');f.write_text(body,encoding='utf-8')
+                  subprocess.run(['node','--check',str(f)],check=True)
+          chrome=shutil.which('google-chrome') or shutil.which('chromium')
+          assert chrome,'Browser required for default-setting tests'
+          original_board=copy.deepcopy(published)
+          original_board['name']='Saved custom board';original_board['id']='preserve-custom-id'
+          original_board['messages'][0]['text']='Keep this saved message exactly'
+          original_board['fixedMemo']='Keep this fixed memo exactly'
+          test_cases=[
+              ('fresh',None,published,1),
+              ('existing-custom',{'boards':[original_board],'activeId':original_board['id']},published,2),
+              ('already-matching',{'boards':[published],'activeId':published['id']},published,1),
+              ('after-local-edit',{'boards':[original_board],'activeId':original_board['id'],'publishedDefaultRevision':revision},original_board,1)
+          ]
+          with tempfile.TemporaryDirectory() as tmp:
+              root=pathlib.Path(tmp)
+              class Handler(http.server.SimpleHTTPRequestHandler):
+                  def __init__(self,*args,**kwargs):super().__init__(*args,directory=str(root),**kwargs)
+                  def log_message(self,*args):pass
+              server=http.server.ThreadingHTTPServer(('127.0.0.1',0),Handler)
+              threading.Thread(target=server.serve_forever,daemon=True).start()
+              results=[]
+              for name,stored,expected,count in test_cases:
+                  prep='localStorage.clear();'
+                  if stored:prep+='localStorage.setItem("warmwise.classroom.v2",'+dump(dump(stored))+');'
+                  test="""
+                  try {
+                   const expected=EXPECTED;
+                   const comparable=value=>JSON.stringify(value,(key,item)=>(key==='id'||key==='name')?undefined:item);
+                   if(comparable(board)!==comparable(validateBoard(expected)))throw Error('Active settings differ');
+                   if(db.boards.length!==COUNT)throw Error('Unexpected saved board count');
+                   if(db.publishedDefaultRevision!==REVISION)throw Error('Revision was not recorded');
+                   if(document.getElementById('stageMessage').textContent!==expected.messages[0].text)throw Error('Visible message differs');
+                   if(document.getElementById('stageNotice').textContent!==expected.notice)throw Error('Notice differs');
+                   if(document.getElementById('stage').dataset.point!==expected.pointStyle)throw Error('Point style differs');
+                   if(expected.fixedMemo===''&&!document.getElementById('fixedMemo').hidden)throw Error('Empty memo is visible');
+                   if(CUSTOM){const saved=db.boards.find(item=>item.id==='preserve-custom-id');if(!saved||saved.fixedMemo!=='Keep this fixed memo exactly'||saved.messages[0].text!=='Keep this saved message exactly')throw Error('Custom board overwritten');}
+                   if(comparable(unpack(pack({version:1,board})).board)!==comparable(board))throw Error('Sharing changes settings');
+                   persist();const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));
+                   if(saved.publishedDefaultRevision!==REVISION)throw Error('Persisted revision missing');
+                   document.documentElement.setAttribute('data-defaults-check','passed');
+                  } catch(error){document.documentElement.setAttribute('data-defaults-check','failed');document.documentElement.setAttribute('data-defaults-error',error.message);}
+                  """.replace('EXPECTED',dump(expected)).replace('COUNT',str(count)).replace('REVISION',dump(revision)).replace('CUSTOM','true' if name in ('existing-custom','after-local-edit') else 'false')
+                  fixture=replace_once(html,"<script>\n'use strict';",'<script>'+prep+'</script><script>\n\'use strict\';')
+                  fixture=replace_once(fixture,'</body>','<script>'+test+'</script></body>')
+                  (root/(name+'.html')).write_text(fixture,encoding='utf-8')
+                  with tempfile.TemporaryDirectory() as profile:
+                      url='http://127.0.0.1:'+str(server.server_port)+'/'+name+'.html'
+                      proc=subprocess.run([chrome,'--headless=new','--no-sandbox','--disable-dev-shm-usage','--user-data-dir='+profile,'--window-size=1440,1000','--virtual-time-budget=1500','--dump-dom','--screenshot='+str(out/(name+'.png')),url],capture_output=True,text=True,timeout=40)
+                      (out/(name+'.html')).write_text(proc.stdout,encoding='utf-8')
+                      root_tag=re.search(r'<html\b[^>]*>',proc.stdout)
+                      assert root_tag and 'data-defaults-check="passed"' in root_tag.group(0), (name,root_tag.group(0) if root_tag else proc.stderr)
+                      results.append({'test':name,'passed':True})
+              server.shutdown()
+          assert json.loads(re.search(r'<script id="starter-data" type="application/json">(.*?)</script>',html,re.S).group(1))['board']==published
+          source.write_text(html,encoding='utf-8')
+          report={'tests':results,'sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'publishedRevision':revision,'message_count':len(published['messages']),'notice':published['notice'],'fixed_memo_empty':published['fixedMemo']=='','settings':published}
+          (out/'verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(report,ensure_ascii=False,indent=2))
+          PY
+      - name: Commit only the classroom board default update
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add board/index.html
+          git commit -m 'Set shared classroom defaults from the teacher supplied settings; preserve saved boards'
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: classroom-defaults-validation
+          path: /tmp/classroom-defaults/
+          retention-days: 3
