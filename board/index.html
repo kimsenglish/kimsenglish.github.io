@@ -669,7 +669,7 @@ input[type=checkbox],input[type=range]{accent-color:#3556e8}
 <dialog id="confirmDialog" aria-labelledby="confirmTitle"><h2 class="dialog-title" id="confirmTitle">확인</h2><p class="dialog-desc" id="confirmText"></p><div class="dialog-actions"><button class="btn" id="cancelConfirm">취소</button><button class="btn primary" id="acceptConfirm">확인</button></div></dialog>
 <input type="file" id="importFile" class="file-upload" accept=".json,application/json">
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script id="starter-data" type="application/json">{}</script>
+<script id="starter-data" type="application/json">{"publishedRevision":"kayoung-20260915-default-1","board":{"id":"4b648cae-77d4-45d2-b671-864e81649650","name":"나의 전광판 · 가져옴","brand":"김가영어학원","tagline":"","theme":"paper","pointStyle":"heart","graphicClock":true,"colorEmphasis":true,"clockNote":"","fixedMemo":"","fixedMemoTitle":"메모","fixedMemoEnabled":true,"memoFontScale":110,"mode":"both","align":"left","fontScale":100,"clockFormat":"24","showSeconds":false,"notice":"오늘 문법책 제출하고 가세요","noticeExpiry":"","autoRotate":true,"rotateSeconds":45,"messages":[{"id":"31315928-36e2-472a-b938-0faa26fb09d1","title":"오늘의 메모","text":"오늘도 즐겁게💕\n힘들어도 괴롭진 않도록!","enabled":true,"expiry":""},{"id":"271ab48f-21b9-4d9a-958a-67d25328925c","title":"공부 방법","text":"맞았는지 틀렸는지만 생각하지말고,\n내가 정말 아는지 생각해봅시다","enabled":true,"expiry":""},{"id":"3ecce429-678b-4990-9eb7-44389780b593","title":"질문하기","text":"충분히 생각해도 막히면\n도움을 요청하세요🫶🏻","enabled":true,"expiry":""}]}}</script>
 <script>
 'use strict';
 // No external requests, dependencies, analytics, or remote storage.
@@ -784,8 +784,19 @@ let seed={};try{seed=JSON.parse($('starter-data').textContent);}catch(e){}
 // Stable data key: visual revisions must not discard saved teacher messages.
 const STORAGE_KEY = 'warmwise.classroom.v2'+(typeof seed.bundleId==='string'?'.'+seed.bundleId.slice(0,80):'');
 let db={boards:[],activeId:''}, storageOK=true, saveTimer, paused=false, presenting=false, fullscreenAcquired=false, editorId='', shownId='', lastSwitch=Date.now(), toastTimer, chromeTimer, confirmCallback=null, lastDate='', loading=false;
-try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const parsed=JSON.parse(raw);if(Array.isArray(parsed.boards)){db.boards=parsed.boards.slice(0,LIMITS.boards).map(b=>validateBoard(seed.bundleId?b:refreshFactoryExample(b),true));db.activeId=text(parsed.activeId,100);}}}catch(e){storageOK=false;}
+try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const parsed=JSON.parse(raw);if(Array.isArray(parsed.boards)){db.boards=parsed.boards.slice(0,LIMITS.boards).map(b=>validateBoard(seed.bundleId?b:refreshFactoryExample(b),true));db.activeId=text(parsed.activeId,100);db.publishedDefaultRevision=text(parsed.publishedDefaultRevision,80);}}}catch(e){storageOK=false;}
 if(!db.boards.length){let initial;try{initial=seed.board?validateBoard(seed.board):createBoard();}catch(e){initial=createBoard();}db.boards=[initial];db.activeId=initial.id;}
+// A published default is adopted once, without deleting any saved teacher board.
+// Later local edits survive reloads; standalone exports keep their own settings.
+const publishedRevision = text(seed.publishedRevision,80);
+if(!seed.bundleId && seed.board && publishedRevision && db.publishedDefaultRevision!==publishedRevision){
+ const incoming=validateBoard(seed.board);
+ const comparable=value=>JSON.stringify(value,(key,item)=>(key==='id'||key==='name')?undefined:item);
+ const existing=db.boards.find(item=>comparable(item)===comparable(incoming));
+ if(existing){db.activeId=existing.id;}
+ else if(db.boards.length<LIMITS.boards){db.boards.push(incoming);db.activeId=incoming.id;}
+ db.publishedDefaultRevision=publishedRevision;
+}
 if(!db.boards.some(b=>b.id===db.activeId))db.activeId=db.boards[0].id;
 let board=db.boards.find(b=>b.id===db.activeId);
 function toast(message){clearTimeout(toastTimer);$('toast').textContent=message;$('toast').classList.add('show');toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3500);}
