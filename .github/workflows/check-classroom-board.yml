@@ -18,9 +18,12 @@ jobs:
         run: |
           mkdir -p /tmp/classroom-check
           python3 - <<'PY'
-          import hashlib,json,pathlib,re,shutil,subprocess,tempfile,time,urllib.request
+          import hashlib,html,json,pathlib,re,shutil,subprocess,tempfile,time,urllib.request
           url='https://kimsenglish.github.io/board/'
-          expected=hashlib.sha256(pathlib.Path('board/index.html').read_bytes()).hexdigest()
+          source=pathlib.Path('board/index.html').read_bytes()
+          expected=hashlib.sha256(source).hexdigest()
+          seed_match=re.search(r'<script id="starter-data" type="application/json">(.*?)</script>',source.decode('utf-8'),re.S)
+          seed=json.loads(seed_match.group(1)) if seed_match else {}
           check_url=url+'?check='+expected[:16]
           out=pathlib.Path('/tmp/classroom-check')
           report={'url':url,'success':False}
@@ -48,6 +51,22 @@ jobs:
               report['browser_messages_rendered']='class="msg-item' in result.stdout
               report['fixed_memo_controls_rendered']='id="fixedMemoInput"' in result.stdout and 'id="tab-memo"' in result.stdout
               assert clock and report['browser_messages_rendered'] and report['fixed_memo_controls_rendered'], 'Browser did not render the upgraded board'
+              if seed.get('publishedRevision') and seed.get('board'):
+                  settings=seed['board']
+                  message=re.search(r'<p\b[^>]*id="stageMessage"[^>]*>(.*?)</p>',result.stdout,re.S)
+                  notice=re.search(r'<span\b[^>]*id="stageNotice"[^>]*>(.*?)</span>',result.stdout,re.S)
+                  stage=re.search(r'<div\b[^>]*id="stage"[^>]*>',result.stdout)
+                  assert message and notice and stage, 'Published board UI is missing'
+                  message_text=html.unescape(re.sub(r'<[^>]+>','',message.group(1)))
+                  notice_text=html.unescape(re.sub(r'<[^>]+>','',notice.group(1)))
+                  report['published_revision']=seed['publishedRevision']
+                  report['default_message']=message_text
+                  report['default_notice']=notice_text
+                  report['default_point_style']=settings['pointStyle']
+                  assert message_text==settings['messages'][0]['text'], 'Fresh device sees a different message'
+                  assert notice_text==settings['notice'], 'Fresh device sees a different notice'
+                  assert 'data-point="'+settings['pointStyle']+'"' in stage.group(0), 'Point style differs'
+                  report['published_defaults_verified']=True
           (out/'verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
           print(json.dumps(report,ensure_ascii=False,indent=2))
           PY
