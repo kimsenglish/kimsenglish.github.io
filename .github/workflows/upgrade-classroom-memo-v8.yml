@@ -1,0 +1,87 @@
+name: Upgrade classroom board fixed memo v8
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/upgrade-classroom-memo-v8.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply guarded migration
+        run: |
+          python3 .github/scripts/upgrade_classroom_memo_v8.py board/index.html
+          python3 - <<'PY'
+          import hashlib,pathlib
+          raw=pathlib.Path('board/index.html').read_bytes()
+          assert hashlib.sha256(raw).hexdigest()=='e1732b6b59e18c5fa9355d300f7bd58a3f6677fd648f4284b052b2169933a517'
+          PY
+      - name: Browser test storage, sharing and stationary memo
+        run: |
+          python3 -m venv /tmp/memo-test-env
+          /tmp/memo-test-env/bin/pip -q install playwright
+          /tmp/memo-test-env/bin/python - <<'PY'
+          import functools,http.server,threading,shutil,json,pathlib
+          from playwright.sync_api import sync_playwright
+          root=pathlib.Path('board').resolve()
+          server=http.server.ThreadingHTTPServer(('127.0.0.1',8765),functools.partial(http.server.SimpleHTTPRequestHandler,directory=str(root)))
+          threading.Thread(target=server.serve_forever,daemon=True).start()
+          out=pathlib.Path('/tmp/memo-v8-check');out.mkdir(exist_ok=True)
+          with sync_playwright() as pw:
+              chrome=shutil.which('google-chrome') or shutil.which('chromium')
+              assert chrome, 'A real browser is required before publication'
+              browser=pw.chromium.launch(executable_path=chrome,headless=True,args=['--no-sandbox'])
+              context=browser.new_context(viewport={'width':1440,'height':1000})
+              p=context.new_page();errors=[];p.on('pageerror',lambda e:errors.append(str(e)))
+              p.goto('http://127.0.0.1:8765/index.html')
+              assert p.title()=='교실 보드 · v8'
+              assert not p.locator('#fixedMemo').is_visible()
+              p.locator('#tab-memo').click()
+              p.locator('#fixedMemoTitleInput').fill('오늘 할 일')
+              notes='독해 12~15쪽\n틀린 문장 3개 다시 쓰기\n다음 시간: 단어장 가져오기'
+              p.locator('#fixedMemoInput').fill(notes);p.wait_for_timeout(350)
+              rect=p.locator('#fixedMemo').bounding_box()
+              before=p.locator('#stageMessage').inner_text()
+              p.locator('#nextMessageBtn').click()
+              assert p.locator('#stageMessage').inner_text()!=before
+              assert p.locator('#fixedMemo').bounding_box()==rect
+              assert p.locator('#fixedMemoText').inner_text()==notes
+              p.evaluate('lastSwitch=Date.now()-100000');p.wait_for_timeout(1300)
+              assert p.locator('#fixedMemo').bounding_box()==rect
+              p.reload();assert p.locator('#fixedMemoText').inner_text()==notes
+              assert p.locator('#fixedMemoTitle').inner_text()=='오늘 할 일'
+              p.locator('#shareBtn').click();link=p.locator('#shareUrl').input_value()
+              recipient=browser.new_context();q=recipient.new_page();q.goto(link)
+              q.locator('#acceptConfirm').click()
+              assert q.locator('#fixedMemoText').inner_text()==notes
+              q.locator('#tab-memo').click();q.locator('#fixedMemoInput').fill('다른 선생님의 메모')
+              assert p.locator('#fixedMemoText').inner_text()==notes
+              p.locator('[data-close="shareDialog"]').click();p.locator('#tab-memo').click()
+              p.screenshot(path=str(out/'editor.png'),full_page=True)
+              p.locator('#presentBtn').click();p.set_viewport_size({'width':1440,'height':810})
+              p.evaluate("document.body.classList.remove('chrome-visible');document.querySelector('#displayToolbar').style.visibility='hidden'")
+              p.wait_for_timeout(250);p.locator('#stage').screenshot(path=str(out/'display.png'))
+              assert not errors,errors
+              report={'success':True,'native_browser_storage':True,'snapshot_sharing':True,'memo_stationary_during_manual_and_auto_rotation':True,'errors':errors}
+              (out/'report.json').write_text(json.dumps(report,indent=2));print(json.dumps(report))
+              browser.close()
+          server.shutdown()
+          PY
+      - name: Publish only the reviewed board file
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add board/index.html
+          git commit -m 'Add stationary memo panel with saved and shareable settings'
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: classroom-fixed-memo-v8-check
+          path: /tmp/memo-v8-check/
+          retention-days: 3
